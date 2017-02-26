@@ -10,8 +10,8 @@ public class CubeMove : MonoBehaviour {
 	public GameObject player_position;
 	public Vector3 default_position = new Vector3(0, 2000f, 0);
 	public float player_position_high = 0.1f;
-	public const int state_static = 0;
-	public const int state_move = 1;
+	private const int state_static = 0;
+	private const int state_move = 1;
 	public float player_high = 0.6f;//高度为2时会乱飞 loading
 	//public GameObject clickPont;
 	public float Speed = 8;
@@ -27,7 +27,6 @@ public class CubeMove : MonoBehaviour {
 	private float skill1_dis_last = -55;
 	private float skill2_time = -55;
 
-
 	void Start () {
 		// layer_Terrain = 1 << LayerMask.NameToLayer("Terrain");
 		player_state = state_static;
@@ -35,9 +34,9 @@ public class CubeMove : MonoBehaviour {
 
 	void Update () {
 		//将player设置为指定的高度 将光标设置到player的脚下
-		Ray set_high_ray = new Ray(transform.position, Vector3.down);
+		Ray set_high_ray = new Ray(new Vector3(transform.position.x, transform.position.y + 5f, transform.position.z), Vector3.down);
 		RaycastHit player_point;
-		if (Physics.Raycast(set_high_ray, out player_point, 600f, layer_Terrain.value)) {
+		if (Physics.Raycast(set_high_ray, out player_point, 60f, layer_Terrain.value)) {
 			Vector3 player_now_position = player_point.point;
 			player_position.transform.position = player_now_position;
 			player_now_position.y += player_high;
@@ -55,16 +54,17 @@ public class CubeMove : MonoBehaviour {
 			break;
 		case state_move:
 			//用和目的地距离变远作为终止条件 但是在碰撞后被弹回会停止
+			target_position.y = transform.position.y;
 			float dis_now = Mathf.Abs(Vector3.Distance(target_position, transform.position));
 			if ((dis_now <= dis_last || dis_last < 0) && dis_now > 0.2f) {
 				// transform.Translate(target_position - transform.position);
-				target_position.y = transform.position.y;
 				// player_rb.velocity = (target_position - transform.position).normalized * Speed;
 				// player_rb.MovePosition(target_position);
 				dis_last = dis_now;
 			} else {
 				set_player_state(state_static);
 			}
+
 			// target_position.y = transform.position.y;
 			// if (Mathf.Abs(Vector3.Distance(target_position, transform.position)) < 0.2f) {
 			// 	player_state = state_static;
@@ -84,6 +84,7 @@ public class CubeMove : MonoBehaviour {
 		}
 
 		//qwer技能
+		//Q发射物体 暂未一绕自身中心旋转的长方体
 		if (Input.GetKeyDown(KeyCode.Q)) {
 			set_skill1_state(state_move);
 		}
@@ -102,7 +103,7 @@ public class CubeMove : MonoBehaviour {
 			break;
 		}
 
-		if(Input.GetKeyDown(KeyCode.W)){
+		if (Input.GetKeyDown(KeyCode.W)) {
 			Ray target_ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 			RaycastHit target_hit;
 			if (Physics.Raycast(target_ray, out target_hit, 600f, layer_Terrain.value)) {
@@ -111,16 +112,16 @@ public class CubeMove : MonoBehaviour {
 				skill2_time = Time.time;
 			}
 		}
-		if(skill2_time >= 0){
-			if(Time.time > skill2_time + skill2_last_time){
+		if (skill2_time >= 0) {
+			if (Time.time > skill2_time + skill2_last_time) {
 				skill2.transform.position = default_position;
 				skill2_time = -55;
 			}
 		}
-		if(Input.GetKeyDown(KeyCode.E)){
+		if (Input.GetKey(KeyCode.E)) {
 			Speed += skill3;
 		}
-		if(Input.GetKeyDown(KeyCode.X)){
+		if (Input.GetKeyDown(KeyCode.X)) {
 			Speed = 8;
 		}
 		if (Input.GetKeyDown(KeyCode.R)) {
@@ -155,6 +156,7 @@ public class CubeMove : MonoBehaviour {
 		case state_static:
 			skill1_dis_last = -55;
 			skill1.transform.position = default_position;
+			skill1_rb.velocity = Vector3.zero;
 			break;
 		}
 	}
