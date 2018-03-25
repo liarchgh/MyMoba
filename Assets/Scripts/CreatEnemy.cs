@@ -7,6 +7,7 @@ public class CreatEnemy : MonoBehaviour {
 	public Vector2 rangeToCreateEnemies;
     public GameObject player;
     public int numberOfEnemies;
+    public GameObject dieAnimation;
 
 	private List<GameObject> now = new List<GameObject>();
 
@@ -28,8 +29,13 @@ public class CreatEnemy : MonoBehaviour {
                 300,
                 len * Mathf.Sin(angle) + player.transform.position.z);
 			now.Add(Instantiate(enemy, pos, Quaternion.identity) as GameObject);
+
+            //设置脚本参数
             EnemyAI ea = now[now.Count-1].GetComponent<EnemyAI>();
             ea.player = player;
+
+            Die die = now[now.Count - 1].GetComponent<Die>();
+            die.dieAnimation = this.dieAnimation;
 		}
 	}
 }
