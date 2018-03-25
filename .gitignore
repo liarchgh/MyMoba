@@ -3,4 +3,5 @@
 !/ProjectSettings
 !/.gitignore
 !/LICENSE
+/readme.md
 *.meta
