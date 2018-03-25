@@ -22,7 +22,7 @@ public class skill1 : MonoBehaviour {
 	}
 
 	void OnTriggerEnter(Collider obj) {
-		Debug.Log("ENter");
+		//Debug.Log("ENter");
 		obj.gameObject.GetComponentInChildren<Slider>().value -= skill1_attack;
 	}
 }
