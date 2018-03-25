@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class CubeMove : MonoBehaviour {
+public class PlayerControl : MonoBehaviour {
 	public GameObject click_rig;
 	public GameObject skill1;
 	public GameObject skill2;

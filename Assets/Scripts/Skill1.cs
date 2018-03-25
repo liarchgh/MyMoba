@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class skill1 : MonoBehaviour {
+public class Skill1 : MonoBehaviour {
 	public float rotate_speed = 4000f;
 	public float skill1_attack = 500f;
 

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class skill2 : MonoBehaviour {
+public class Skill2 : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {

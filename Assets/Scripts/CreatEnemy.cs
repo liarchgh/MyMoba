@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class creat_enemy : MonoBehaviour {
+public class CreatEnemy : MonoBehaviour {
 	public GameObject enemy;
 	public Vector2 rangeToCreateEnemies;
     public GameObject player;
     public int numberOfEnemies;
+    public GameObject dieAnimation;
 
 	private List<GameObject> now = new List<GameObject>();
 
@@ -24,12 +25,17 @@ public class creat_enemy : MonoBehaviour {
 		if (now.Count < numberOfEnemies) {
             float len = Random.Range(rangeToCreateEnemies.x, rangeToCreateEnemies.y),
                 angle = Random.Range(0, 360);
-            Vector3 pos = new Vector3(len * Mathf.Cos(angle)+player.transform.position.x,
-                len * Mathf.Sin(angle)+player.transform.position.y,
-                300);
+            Vector3 pos = new Vector3(len * Mathf.Cos(angle) + player.transform.position.x,
+                300,
+                len * Mathf.Sin(angle) + player.transform.position.z);
 			now.Add(Instantiate(enemy, pos, Quaternion.identity) as GameObject);
+
+            //设置脚本参数
             EnemyAI ea = now[now.Count-1].GetComponent<EnemyAI>();
             ea.player = player;
+
+            Die die = now[now.Count - 1].GetComponent<Die>();
+            die.dieAnimation = this.dieAnimation;
 		}
 	}
 }
