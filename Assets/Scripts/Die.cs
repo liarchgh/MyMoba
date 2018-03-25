@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class die : MonoBehaviour {
+public class Die : MonoBehaviour {
 	public Slider hp;
 
 	// Use this for initialization

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class mark_panel : MonoBehaviour {
+public class MarkPanel : MonoBehaviour {
 	public Rigidbody panel_rb;
 	public int panel_state = state_static;
 	public const int state_static = 0;

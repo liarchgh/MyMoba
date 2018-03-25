@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class set_height : MonoBehaviour {
+public class SetHeight : MonoBehaviour {
 	public LayerMask layer_Terrain;
 	public float height = 1.5f;
 
