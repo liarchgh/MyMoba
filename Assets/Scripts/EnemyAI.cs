@@ -16,12 +16,14 @@ public class EnemyAI : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        Vector3 vPos = player.transform.position - this.transform.position;
-        if(vPos.sqrMagnitude > limitLength) {
-            rb.velocity = moveSpeed * Vector3.Normalize(vPos);
-        }
-        else {
-            rb.velocity = Vector3.zero;
+        if (player) {
+            Vector3 vPos = player.transform.position - this.transform.position;
+            if(vPos.sqrMagnitude > limitLength) {
+                rb.velocity = moveSpeed * Vector3.Normalize(vPos);
+            }
+            else {
+                rb.velocity = Vector3.zero;
+            }
         }
 	}
 }

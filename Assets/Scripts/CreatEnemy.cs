@@ -1,18 +1,24 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CreatEnemy : MonoBehaviour {
 	public GameObject enemy;
 	public Vector2 rangeToCreateEnemies;
     public GameObject player;
-    public int numberOfEnemies;
+    public int numberOfEnemies = 0;
     public GameObject dieAnimation;
+    public Text scoreText;
 
-	private List<GameObject> now = new List<GameObject>();
+    public int numberOfKilledEnemies = 0;
+
+    private List<GameObject> now = new List<GameObject>();
 
 	// Use this for initialization
 	void Start () {
+        numberOfKilledEnemies = 0;
+        scoreText.text = numberOfKilledEnemies.ToString();
 	}
 
 	// Update is called once per frame
@@ -20,6 +26,9 @@ public class CreatEnemy : MonoBehaviour {
         for(int i = 0; i < now.Count; ++i) {
             if (!now[i]) {
                 now.Remove(now[i]);
+                ++numberOfKilledEnemies;
+                scoreText.text = numberOfKilledEnemies.ToString();
+                --i;
             }
         }
 		if (now.Count < numberOfEnemies) {
