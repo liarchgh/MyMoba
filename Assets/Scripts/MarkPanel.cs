@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MarkPanel : MonoBehaviour {
 	public Rigidbody panel_rb;
@@ -34,7 +35,7 @@ public class MarkPanel : MonoBehaviour {
         //根据状态板状态 设置状态板的速度
 		switch (panel_state) {
 		case state_right:
-			panel_rb.velocity = Vector3.right * 20 * (position_end.x - rt.localPosition.x) ;
+			panel_rb.velocity = Vector3.right * 20 / 1000 * Screen.width * (position_end.x - rt.localPosition.x) ;
 			if (position_end.x - rt.localPosition.x <= 0) {
                 rt.localPosition = position_end;
 				set_panel_state(state_static);
