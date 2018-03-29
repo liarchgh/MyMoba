@@ -10,6 +10,7 @@ public class CreatEnemy : MonoBehaviour {
     public int numberOfEnemies = 0;
     public GameObject dieAnimation;
     public Text scoreText;
+    public float EverySecondAddEnemies = 1f;
 
     public int numberOfKilledEnemies = 0;
 
@@ -23,6 +24,7 @@ public class CreatEnemy : MonoBehaviour {
 
 	// Update is called once per frame
 	void FixedUpdate () {
+        numberOfEnemies = (int)(Time.time * EverySecondAddEnemies);
         for(int i = 0; i < now.Count; ++i) {
             if (!now[i]) {
                 now.Remove(now[i]);
