@@ -8,6 +8,7 @@ public class CreatEnemy : MonoBehaviour {
 	public Vector2 rangeToCreateEnemies;
     public GameObject player;
     public int numberOfEnemies = 0;
+    public int maxNumberOfEnemies = 10;
     public GameObject dieAnimation;
     public Text scoreText;
     public float EverySecondAddEnemies = 1f;
@@ -25,7 +26,7 @@ public class CreatEnemy : MonoBehaviour {
 	// Update is called once per frame
 	void FixedUpdate () {
         //增大敌人总数量
-        numberOfEnemies = (int)(Time.time * EverySecondAddEnemies);
+        numberOfEnemies = Mathf.Min((int)(Time.time * EverySecondAddEnemies), maxNumberOfEnemies);
 
         //删除空敌人 并且加分
         for(int i = 0; i < now.Count; ++i) {

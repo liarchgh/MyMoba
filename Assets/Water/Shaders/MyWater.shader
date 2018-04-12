@@ -4,6 +4,8 @@ Shader "leesue/MyWater"
 {
 	Properties
 	{
+		_Color("Color", Color) = (1,1,1,1)
+		_RefTexture("_RefTexture", 2D) = "white"{}
 		_WaveDirectionX("wave direction x", Vector) = (1.0, 1.0, 0.0, 0.0)
 		_WaveDirectionZ("wave direction z", Vector) = (1.0, 1.0, 0.0, 0.0)
 		_Q("WaveSharp", float) = 1.0
@@ -37,7 +39,12 @@ Shader "leesue/MyWater"
 				float2 uv : TEXCOORD0;
 				UNITY_FOG_COORDS(1)
 				float4 vertex : SV_POSITION;
+				float4 ScreenPos:TEXCOORD1;
 			};
+
+			sampler2D _RefTexture;
+			float4 _RefTexture_ST;
+			fixed4 _Color;
 
 			float _Q;
 			float4 _WaveDirectionX;
@@ -59,21 +66,26 @@ Shader "leesue/MyWater"
 			v2f vert (appdata v)
 			{
 				v2f o;
-                o.uv = float2(0,0);
                 /* o.uv = float2(0.0f, 0.0f); */
-				UNITY_TRANSFER_FOG(o,o.vertex);
+		        o.uv = TRANSFORM_TEX(v.uv, _RefTexture);
+				o.ScreenPos = ComputeScreenPos(UnityObjectToClipPos(v.vertex));
 				o.vertex = mul( unity_ObjectToWorld, v.vertex);
 				//o.vertex.xyz = CalculateWavesDisplacement(o.vertex.xyz);
 				o.vertex = changeToWavePosition(o.vertex);
 				o.vertex = mul(unity_WorldToObject, o.vertex);
 				o.vertex = UnityObjectToClipPos(o.vertex);
+
+				UNITY_TRANSFER_FOG(o,o.vertex);
 				return o;
 			}
 			
 			fixed4 frag (v2f i) : SV_Target
 			{
 				// sample the texture
-				fixed4 col = fixed4(1.0, 0.0, 0.0, 0);
+				fixed4 col = (tex2D(_RefTexture, i.ScreenPos.xy/i.ScreenPos.w)*_Color);
+				float2 refuv = i.uv;
+				refuv = float2(refuv.y, 1 - refuv.x);
+				//fixed4 col = (tex2D(_RefTexture, refuv)*_Color);
 				// apply fog
 				UNITY_APPLY_FOG(i.fogCoord, col);
 				return col;
