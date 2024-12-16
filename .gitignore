@@ -1,7 +1,10 @@
 /*
 !/Assets
 !/ProjectSettings
+!/UnityPackageManager
 !/.gitignore
 !/LICENSE
 !/readme.md
-*.meta
+!*.csproj
+!*.sln
+!/.vscode
