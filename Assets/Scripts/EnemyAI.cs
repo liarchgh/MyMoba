@@ -19,10 +19,10 @@ public class EnemyAI : MonoBehaviour {
         if (player) {
             Vector3 vPos = player.transform.position - this.transform.position;
             if(vPos.sqrMagnitude > limitLength) {
-                rb.velocity = moveSpeed * Vector3.Normalize(vPos);
+                rb.linearVelocity = moveSpeed * Vector3.Normalize(vPos);
             }
             else {
-                rb.velocity = Vector3.zero;
+                rb.linearVelocity = Vector3.zero;
             }
         }
 	}

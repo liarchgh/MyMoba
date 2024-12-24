@@ -151,12 +151,12 @@ public class PlayerControl : MonoBehaviour {
 				skill1.transform.position = transform.position;
 			}
 			skill1_target_position.y = skill1.transform.position.y;
-			skill1_rb.velocity = (skill1_target_position - skill1.transform.position).normalized * skill1_speed;
+			skill1_rb.linearVelocity = (skill1_target_position - skill1.transform.position).normalized * skill1_speed;
 			break;
 		case state_static:
 			skill1_dis_last = -55;
 			skill1.transform.position = default_position;
-			skill1_rb.velocity = Vector3.zero;
+			skill1_rb.linearVelocity = Vector3.zero;
 			break;
 		}
 	}
@@ -165,7 +165,7 @@ public class PlayerControl : MonoBehaviour {
 		player_state = state;
 		switch (state) {
 		case state_static:
-			player_rb.velocity = Vector3.zero;
+			player_rb.linearVelocity = Vector3.zero;
 			dis_last = -555;
 			click_rig.transform.position = default_position;
 			break;
@@ -181,7 +181,7 @@ public class PlayerControl : MonoBehaviour {
 				}
 			}
 			target_position.y = transform.position.y;
-			player_rb.velocity = (target_position - transform.position).normalized * Speed;
+			player_rb.linearVelocity = (target_position - transform.position).normalized * Speed;
 			break;
 		}
 	}

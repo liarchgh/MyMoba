@@ -35,14 +35,14 @@ public class MarkPanel : MonoBehaviour {
         //根据状态板状态 设置状态板的速度
 		switch (panel_state) {
 		case state_right:
-			panel_rb.velocity = Vector3.right * 20 / 1000 * Screen.width * (position_end.x - rt.localPosition.x) ;
+			panel_rb.linearVelocity = Vector3.right * 20 / 1000 * Screen.width * (position_end.x - rt.localPosition.x) ;
 			if (position_end.x - rt.localPosition.x <= 0) {
                 rt.localPosition = position_end;
 				set_panel_state(state_static);
 			}
 			break;
 		case state_left:
-			panel_rb.velocity = Vector3.left * 20 * (rt.localPosition.x - position_begin.x) ;
+			panel_rb.linearVelocity = Vector3.left * 20 * (rt.localPosition.x - position_begin.x) ;
 			// if (position_end.x - rt.localPosition.x >= 0) {
 			// 	set_panel_state(state_static);
 			// }
@@ -58,12 +58,12 @@ public class MarkPanel : MonoBehaviour {
 		switch (state) {
 		case state_right:
             goToBeginPosition();
-			panel_rb.velocity = Vector3.zero;
+			panel_rb.linearVelocity = Vector3.zero;
 			break;
 		case state_left:
 			break;
 		case state_static:
-			panel_rb.velocity = Vector3.zero;
+			panel_rb.linearVelocity = Vector3.zero;
 			// panel_rb.AddForce(Vector3.left * 50000);
 			break;
 		}
