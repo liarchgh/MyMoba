@@ -2214,10 +2214,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f840f143278886a408885473b359d4ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SkillComponent:
+    Skills:
+    - Skill:
+        PrefabPath: {fileID: 1651409445499172, guid: 1bbe409e9c7712b49a1dae81c8cbe9be,
+          type: 3}
+        layer_Terrain:
+          serializedVersion: 2
+          m_Bits: 256
+        skill1_speed: 30
+      Trigger:
+        Key: 113
   click_rig: {fileID: 1120677118}
-  _skill1Go: {fileID: 0}
-  Skill1Prefab: {fileID: 1651409445499172, guid: 1bbe409e9c7712b49a1dae81c8cbe9be,
-    type: 3}
   skill2: {fileID: 627597547}
   skill2_last_time: 4
   skill3: 5
