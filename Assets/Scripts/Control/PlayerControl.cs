@@ -2,10 +2,9 @@
 using System.Collections;
 
 public class PlayerControl : MonoBehaviour, ICommonManger {
+	public static PlayerControl Instance { get; private set; }
+	public SkillComponent SkillComponent = new SkillComponent();
 	public GameObject click_rig;
-	private GameObject _skill1Go;
-	public Rigidbody skill1_rb => _skill1Go.GetComponent<Rigidbody>();
-	public GameObject Skill1Prefab;
 	public GameObject skill2;
 	public float skill2_last_time = 4.0f;
 	public float skill3 = 5;
@@ -18,20 +17,18 @@ public class PlayerControl : MonoBehaviour, ICommonManger {
 	//public GameObject clickPont;
 	public float Speed = 8;
 	public float skill1_speed = 50;
-	private int skill1_state = state_static;
 	private int player_state = state_static;
 	private float dis_last = -555;
 	private Vector3 target_position;
-	private Vector3 skill1_target_position;
 	public Rigidbody player_rb;
 	public LayerMask layer_Terrain;
-	private float skill1_dis_last = -55;
 	private float skill2_time = -55;
 
 	void Start () {
 		// layer_Terrain = 1 << LayerMask.NameToLayer("Terrain");
 		BattleManger.Instance.AddCommonManger(this);
 		player_state = state_static;
+		Instance = this;
 	}
 
 	public void CommonUpdate () {
@@ -44,6 +41,7 @@ public class PlayerControl : MonoBehaviour, ICommonManger {
 			player_now_position.y += player_high;
 			transform.position = player_now_position;
 		}
+		SkillComponent.CommonUpdate();
 	}
 
 	public void CommonFixedUpdate() {
@@ -85,26 +83,6 @@ public class PlayerControl : MonoBehaviour, ICommonManger {
 			set_player_state(state_static);
 		}
 
-		//qwer技能
-		//Q发射物体 暂未一绕自身中心旋转的长方体
-		if (Input.GetKeyDown(KeyCode.Q)) {
-			set_skill1_state(state_move);
-		}
-		switch (skill1_state) {
-		case state_move:
-			float dis_now = Mathf.Abs(Vector3.Distance(skill1_target_position, _skill1Go.transform.position));
-			if (dis_now <= skill1_dis_last || skill1_dis_last < 0) {
-				skill1_target_position.y = _skill1Go.transform.position.y;
-				// skill1_rb.velocity = (skill1_target_position - skill1.transform.position).normalized * skill1_speed;
-				skill1_dis_last = dis_now;
-			} else {
-				set_skill1_state(state_static);
-			}
-			break;
-		case state_static:
-			break;
-		}
-
 		if (Input.GetKeyDown(KeyCode.W)) {
 			Ray target_ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 			RaycastHit target_hit;
@@ -137,30 +115,7 @@ public class PlayerControl : MonoBehaviour, ICommonManger {
 				// player_rb.velocity = (target_position - transform.position).normalized * Speed;
 			}
 		}
-	}
-
-	public void set_skill1_state(int state) {
-		skill1_state = state_move;
-		switch (state) {
-		case state_move:
-			_skill1Go = Instantiate(Skill1Prefab);
-			skill1_dis_last = -55;
-			Ray target_ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-			RaycastHit target_hit;
-			Vector3 pos;
-			if (Physics.Raycast(target_ray, out target_hit, 600f, layer_Terrain.value)) {
-				pos = target_hit.point;
-				skill1_target_position = pos;
-				_skill1Go.transform.position = transform.position;
-			}
-			skill1_target_position.y = _skill1Go.transform.position.y;
-			skill1_rb.linearVelocity = (skill1_target_position - _skill1Go.transform.position).normalized * skill1_speed;
-			break;
-		case state_static:
-			skill1_dis_last = -55;
-			Destroy(_skill1Go);
-			break;
-		}
+		SkillComponent.CommonFixedUpdate();
 	}
 
 	public void set_player_state(int state) {

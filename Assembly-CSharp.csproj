@@ -67,17 +67,23 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\EnemySkill4.cs" />
     <Compile Include="Assets\Scripts\Die.cs" />
+    <Compile Include="Assets\Scripts\Control\SkillShoot.cs" />
     <Compile Include="Assets\Scripts\EnemySkill2.cs" />
+    <Compile Include="Assets\Scripts\Control\SkillBase.cs" />
     <Compile Include="Assets\Scripts\EnemySkill1.cs" />
+    <Compile Include="Assets\Scripts\Control\LogicTriggerPressKey.cs" />
     <Compile Include="Assets\Scripts\EnemySkill5.cs" />
     <Compile Include="Assets\Scripts\EnemySkill3.cs" />
     <Compile Include="Assets\Scripts\EnemyAI.cs" />
     <Compile Include="Assets\Scripts\BattleManger.cs" />
+    <Compile Include="Assets\Scripts\EntityBase.cs" />
     <Compile Include="Assets\Scripts\EnemyManager.cs" />
+    <Compile Include="Assets\Scripts\Control\LogicTrigger.cs" />
     <Compile Include="Assets\Scripts\MarkPanel.cs" />
     <Compile Include="Assets\Scripts\Skill1.cs" />
     <Compile Include="Assets\Scripts\Skill2.cs" />
     <Compile Include="Assets\Scripts\MainCameraMove.cs" />
+    <Compile Include="Assets\Scripts\Control\SkillComponent.cs" />
     <Compile Include="Assets\Log.cs" />
     <Compile Include="Assets\Scripts\Control\PlayerControl.cs" />
     <Compile Include="Assets\Scripts\SetHeight.cs" />
