@@ -18,7 +18,7 @@ public class LogicTriggerSerialized
 	}
 	[SerializeField]
 	private LogicTriggerType _logicTriggerType;
-	[SerializeField, ShowIf(nameof(_logicTriggerType), LogicTriggerType.LogicTriggerPressKey)]
+	[SerializeField, ShowIf("@this._logicTriggerType == LogicTriggerType.LogicTriggerPressKey")]
 	private LogicTriggerPressKey LogicTriggerPressKey;
 	public LogicTriggerBase Trigger
 	{

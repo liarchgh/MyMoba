@@ -16,11 +16,15 @@ public class ActionLogicSerialized
 	public enum ActionLogicType
 	{
 		ActionLogicShoot,
+		ActionLogicContains,
 	}
 	[SerializeField]
 	private ActionLogicType _actionLogicType;
-	[SerializeField, ShowIf(nameof(_actionLogicType), ActionLogicType.ActionLogicShoot)]
+	[SerializeField, ShowIf("@this._actionLogicType == ActionLogicType.ActionLogicShoot")]
 	private ActionLogicShoot ActionLogicShoot;
+	[SerializeField, ShowIf("@this._actionLogicType == ActionLogicType.ActionLogicContains")]
+	private ActionLogicContains ActionLogicContains;
+
 	public ActionLogicBase Logic
 	{
 		get
@@ -29,6 +33,8 @@ public class ActionLogicSerialized
 			{
 				case ActionLogicType.ActionLogicShoot:
 					return ActionLogicShoot;
+				case ActionLogicType.ActionLogicContains:
+					return ActionLogicContains;
 			}
 			throw new NotImplementedException();
 		}

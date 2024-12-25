@@ -5,24 +5,19 @@ public class PlayerControl : MonoBehaviour, ICommonManger {
 	public static PlayerControl Instance { get; private set; }
 	public SkillComponent SkillComponent = new SkillComponent();
 	public GameObject click_rig;
-	public GameObject skill2;
-	public float skill2_last_time = 4.0f;
-	public float skill3 = 5;
 	public GameObject player_position;
-	public Vector3 default_position = new Vector3(0, 2000f, 0);
+	private static Vector3 default_position = new Vector3(0, 2000f, 0);
 	public float player_position_high = 0.1f;
 	private const int state_static = 0;
 	private const int state_move = 1;
 	public float player_high = 0.6f;//高度为2时会乱飞 loading
 	//public GameObject clickPont;
 	public float Speed = 8;
-	public float skill1_speed = 50;
 	private int player_state = state_static;
 	private float dis_last = -555;
 	private Vector3 target_position;
-	public Rigidbody player_rb;
+	public Rigidbody player_rb => GetComponent<Rigidbody>();
 	public LayerMask layer_Terrain;
-	private float skill2_time = -55;
 
 	void Start () {
 		// layer_Terrain = 1 << LayerMask.NameToLayer("Terrain");
@@ -83,24 +78,6 @@ public class PlayerControl : MonoBehaviour, ICommonManger {
 			set_player_state(state_static);
 		}
 
-		if (Input.GetKeyDown(KeyCode.W)) {
-			Ray target_ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-			RaycastHit target_hit;
-			if (Physics.Raycast(target_ray, out target_hit, 600f, layer_Terrain.value)) {
-				Vector3 pos = target_hit.point;
-				skill2.transform.position = pos;
-				skill2_time = Time.time;
-			}
-		}
-		if (skill2_time >= 0) {
-			if (Time.time > skill2_time + skill2_last_time) {
-				skill2.transform.position = default_position;
-				skill2_time = -55;
-			}
-		}
-		if (Input.GetKey(KeyCode.E)) {
-			Speed += skill3;
-		}
 		if (Input.GetKeyDown(KeyCode.X)) {
 			Speed = 8;
 		}
