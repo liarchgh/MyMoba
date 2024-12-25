@@ -2093,46 +2093,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SkillComponent:
     Skills:
-    - _skill:
-        _actionLogicType: 0
-        ActionLogicShoot:
-          Prefab: {fileID: 1651409445499172, guid: 1bbe409e9c7712b49a1dae81c8cbe9be,
-            type: 3}
-          layer_Terrain:
-            serializedVersion: 2
-            m_Bits: 256
-          skill1_speed: 50
-        ActionLogicContains:
-          Prefab: {fileID: 0}
-          TerrainLayer:
-            serializedVersion: 2
-            m_Bits: 0
-          skill2_last_time: 4
-          default_position: {x: 0, y: 2000, z: 0}
-      _trigger:
-        _logicTriggerType: 0
-        LogicTriggerPressKey:
-          Key: 113
-    - _skill:
-        _actionLogicType: 1
-        ActionLogicShoot:
-          Prefab: {fileID: 0}
-          layer_Terrain:
-            serializedVersion: 2
-            m_Bits: 0
-          skill1_speed: 50
-        ActionLogicContains:
-          Prefab: {fileID: 827935292332683951, guid: 2b0a15816b7a550468174b4e0049b72f,
-            type: 3}
-          TerrainLayer:
-            serializedVersion: 2
-            m_Bits: 256
-          skill2_last_time: 4
-          default_position: {x: 0, y: 2000, z: 0}
-      _trigger:
-        _logicTriggerType: 0
-        LogicTriggerPressKey:
-          Key: 119
+    - Skill:
+        rid: 5046661095202750530
+      Trigger:
+        rid: 5046661095202750527
+    - Skill:
+        rid: 5046661095202750528
+      Trigger:
+        rid: 5046661095202750529
   click_rig: {fileID: 1120677118}
   player_position: {fileID: 637909703}
   player_position_high: 0.1
@@ -2141,6 +2109,36 @@ MonoBehaviour:
   layer_Terrain:
     serializedVersion: 2
     m_Bits: 256
+  references:
+    version: 2
+    RefIds:
+    - rid: 5046661095202750527
+      type: {class: LogicTriggerPressKey, ns: , asm: Assembly-CSharp}
+      data:
+        Key: 113
+    - rid: 5046661095202750528
+      type: {class: ActionLogicContains, ns: , asm: Assembly-CSharp}
+      data:
+        Prefab: {fileID: 827935292332683951, guid: 2b0a15816b7a550468174b4e0049b72f,
+          type: 3}
+        TerrainLayer:
+          serializedVersion: 2
+          m_Bits: 256
+        skill2_last_time: 4
+        default_position: {x: 0, y: 2000, z: 0}
+    - rid: 5046661095202750529
+      type: {class: LogicTriggerPressKey, ns: , asm: Assembly-CSharp}
+      data:
+        Key: 119
+    - rid: 5046661095202750530
+      type: {class: ActionLogicShoot, ns: , asm: Assembly-CSharp}
+      data:
+        Prefab: {fileID: 1651409445499172, guid: 1bbe409e9c7712b49a1dae81c8cbe9be,
+          type: 3}
+        layer_Terrain:
+          serializedVersion: 2
+          m_Bits: 256
+        skill1_speed: 50
 --- !u!23 &2062671311
 MeshRenderer:
   m_ObjectHideFlags: 0

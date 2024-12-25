@@ -30,10 +30,8 @@ public class SkillComponent
 [Serializable]
 public class SkillConfig
 {
-	[SerializeField]
-	private ActionLogicSerialized _skill;
-	public ActionLogicBase Skill => _skill.Logic;
-	[SerializeField]
-	private LogicTriggerSerialized _trigger;
-	public LogicTriggerBase Trigger => _trigger.Trigger;
+	[SerializeReference, Subclass]
+	public ActionLogicBase Skill;
+	[SerializeReference, Subclass]
+	public LogicTriggerBase Trigger;
 }

@@ -70,6 +70,7 @@
     <Compile Include="Assets\Scripts\EnemySkill2.cs" />
     <Compile Include="Assets\Scripts\Control\ActionLogicContains.cs" />
     <Compile Include="Assets\Scripts\EnemySkill1.cs" />
+    <Compile Include="Assets\Scripts\PropertyAttributes\SubclassAttribute.cs" />
     <Compile Include="Assets\Scripts\Control\LogicTriggerPressKey.cs" />
     <Compile Include="Assets\Scripts\EnemySkill5.cs" />
     <Compile Include="Assets\Scripts\EnemySkill3.cs" />

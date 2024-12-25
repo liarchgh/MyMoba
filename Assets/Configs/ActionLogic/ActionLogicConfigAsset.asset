@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e69c628af6f0dc44da68d15b460c8ec3, type: 3}
+  m_Name: ActionLogicConfigAsset
+  m_EditorClassIdentifier: 
+  _actionLogicType: 0
+  ActionLogicShoot: {Prefab: {fileID: 0}, skill1_dis_last: -55, skill1_target_position: {x: 0,
+      y: 0, z: 0}, layer_Terrain:
+      m_Bits: 0
+, skill1_speed: 50}
+  ActionLogicContains: {Prefab: {fileID: 0}, TerrainLayer:
+      m_Bits: 0
+, skill2_time: -55, skill2_last_time: 4, default_position: {x: 0, y: 2000, z: 0}}
