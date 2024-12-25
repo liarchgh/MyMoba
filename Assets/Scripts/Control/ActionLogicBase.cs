@@ -1,5 +1,4 @@
 using System;
-using Sirenix.OdinInspector;
 using UnityEngine;
 
 [Serializable]
@@ -20,9 +19,9 @@ public class ActionLogicSerialized
 	}
 	[SerializeField]
 	private ActionLogicType _actionLogicType;
-	[SerializeField, ShowIf("@this._actionLogicType == ActionLogicType.ActionLogicShoot")]
+	[SerializeField]
 	private ActionLogicShoot ActionLogicShoot;
-	[SerializeField, ShowIf("@this._actionLogicType == ActionLogicType.ActionLogicContains")]
+	[SerializeField]
 	private ActionLogicContains ActionLogicContains;
 
 	public ActionLogicBase Logic

@@ -1,5 +1,4 @@
 using System;
-using Sirenix.OdinInspector;
 using UnityEngine;
 
 [Serializable]
@@ -18,7 +17,7 @@ public class LogicTriggerSerialized
 	}
 	[SerializeField]
 	private LogicTriggerType _logicTriggerType;
-	[SerializeField, ShowIf("@this._logicTriggerType == LogicTriggerType.LogicTriggerPressKey")]
+	[SerializeField]
 	private LogicTriggerPressKey LogicTriggerPressKey;
 	public LogicTriggerBase Trigger
 	{
