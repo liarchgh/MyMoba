@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 
 [Serializable]
-public class LogicTriggerPressKey: LogicTrigger
+public class LogicTriggerPressKey: LogicTriggerBase
 {
 	public KeyCode Key;
     public override bool CheckSkillTrigger()

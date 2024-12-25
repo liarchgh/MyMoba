@@ -2216,15 +2216,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SkillComponent:
     Skills:
-    - Skill:
-        PrefabPath: {fileID: 1651409445499172, guid: 1bbe409e9c7712b49a1dae81c8cbe9be,
-          type: 3}
-        layer_Terrain:
-          serializedVersion: 2
-          m_Bits: 256
-        skill1_speed: 30
-      Trigger:
-        Key: 113
+    - _skill:
+        _actionLogicType: 0
+        ActionLogicShoot:
+          PrefabPath: {fileID: 1651409445499172, guid: 1bbe409e9c7712b49a1dae81c8cbe9be,
+            type: 3}
+          layer_Terrain:
+            serializedVersion: 2
+            m_Bits: 288
+          skill1_speed: 50
+      _trigger:
+        _logicTriggerType: 0
+        LogicTriggerPressKey:
+          Key: 113
   click_rig: {fileID: 1120677118}
   skill2: {fileID: 627597547}
   skill2_last_time: 4

@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SkillShootEntity : EntityBase
+public class ActionLogicShootEntity : EntityBase
 {
 	public GameObject GO;
 	public override void Clear()
@@ -11,10 +11,10 @@ public class SkillShootEntity : EntityBase
 	}
 }
 [Serializable]
-public class SkillShoot: SkillLogicBase
+public class ActionLogicShoot: ActionLogicBase
 {
 	public GameObject PrefabPath;
-	private List<SkillShootEntity> SkillShootEntities = new List<SkillShootEntity>();
+	private List<ActionLogicShootEntity> Entities = new List<ActionLogicShootEntity>();
 	public override bool FixedUpdate()
 	{
 		float dis_now = Mathf.Abs(Vector3.Distance(skill1_target_position, _skill1Go.transform.position));
@@ -31,21 +31,21 @@ public class SkillShoot: SkillLogicBase
 	public override void DoLogic()
 	{
 		var go = GameObject.Instantiate(PrefabPath);
-		var e = new SkillShootEntity(){GO = go};
-		SkillShootEntities.Add(e);
+		var e = new ActionLogicShootEntity(){GO = go};
+		Entities.Add(e);
 		set_skill1_state(state_move, PlayerControl.Instance.transform.position);
 	}
 	public override void Clear()
 	{
-		SkillShootEntities.ForEach(e => e.Clear());
-		SkillShootEntities.Clear();
+		Entities.ForEach(e => e.Clear());
+		Entities.Clear();
 	}
 	private const int state_static = 0;
 	private const int state_move = 1;
 	private float skill1_dis_last = -55;
 	private Vector3 skill1_target_position;
 	public LayerMask layer_Terrain;
-	public GameObject _skill1Go => SkillShootEntities[0].GO;
+	public GameObject _skill1Go => Entities[0].GO;
 	public Rigidbody skill1_rb => _skill1Go.GetComponent<Rigidbody>();
 	public float skill1_speed = 50;
 	public void set_skill1_state(int state, Vector3 startPos) {

@@ -3,7 +3,7 @@ using Sirenix.OdinInspector;
 using UnityEngine;
 
 [Serializable]
-public abstract class LogicTrigger
+public abstract class LogicTriggerBase
 {
 	public abstract bool CheckSkillTrigger();
 }
@@ -20,7 +20,7 @@ public class LogicTriggerSerialized
 	private LogicTriggerType _logicTriggerType;
 	[SerializeField, ShowIf(nameof(_logicTriggerType), LogicTriggerType.LogicTriggerPressKey)]
 	private LogicTriggerPressKey LogicTriggerPressKey;
-	public LogicTrigger Trigger
+	public LogicTriggerBase Trigger
 	{
 		get
 		{
