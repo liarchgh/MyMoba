@@ -11,18 +11,10 @@ public class SkillShootEntity : EntityBase
 	}
 }
 [Serializable]
-public class SkillShoot: SkillBase
+public class SkillShoot: SkillLogicBase
 {
 	public GameObject PrefabPath;
 	private List<SkillShootEntity> SkillShootEntities = new List<SkillShootEntity>();
-	public override TriggerType CheckSkillTrigger()
-	{
-		if (Input.GetKeyDown(KeyCode.Q))
-		{
-			return TriggerType.PlayerControl;
-		}
-		return TriggerType.None;
-	}
 	public override bool FixedUpdate()
 	{
 		float dis_now = Mathf.Abs(Vector3.Distance(skill1_target_position, _skill1Go.transform.position));

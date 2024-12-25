@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine;
 
 [Serializable]
 public class SkillComponent
@@ -13,6 +14,7 @@ public class SkillComponent
 		{
 			if(x.Trigger.CheckSkillTrigger())
 			{
+				// TODO: 现在只能放出一个，框架上不应有这种限制
 				x.Skill.DoLogic();
 				// 先跑一次，优化表现
 				if(!x.Skill.FixedUpdate())
@@ -28,6 +30,10 @@ public class SkillComponent
 [Serializable]
 public class SkillConfig
 {
-	public SkillShoot Skill;
-	public LogicTriggerPressKey Trigger;
+	[SerializeField]
+	private SkillLogicSerialized _skill;
+	public SkillLogicBase Skill => _skill.Logic;
+	[SerializeField]
+	private LogicTriggerSerialized _trigger;
+	public LogicTrigger Trigger => _trigger.Trigger;
 }
