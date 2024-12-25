@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CreatEnemy : MonoBehaviour {
+public class EnemyManager : MonoBehaviour, ICommonManger {
 	public GameObject enemy;
 	public Vector2 rangeToCreateEnemies;
     public GameObject player;
@@ -17,13 +17,14 @@ public class CreatEnemy : MonoBehaviour {
     private List<GameObject> now = new List<GameObject>();
 
 	// Use this for initialization
-	void Start () {
+	public void Start () {
+        BattleManger.Instance.AddCommonManger(this);
         numberOfKilledEnemies = 0;
         scoreText.text = numberOfKilledEnemies.ToString();
 	}
 
 	// Update is called once per frame
-	void FixedUpdate () {
+	public void CommonFixedUpdate () {
         //增大敌人总数量
         numberOfEnemies = (int)(Time.time * EverySecondAddEnemies);
 
@@ -52,4 +53,7 @@ public class CreatEnemy : MonoBehaviour {
             die.dieAnimation = this.dieAnimation;
 		}
 	}
+    public void CommonUpdate()
+    {
+    }
 }

@@ -1,9 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PlayerControl : MonoBehaviour {
+public class PlayerControl : MonoBehaviour, ICommonManger {
 	public GameObject click_rig;
-	public GameObject skill1;
+	private GameObject _skill1Go;
+	public Rigidbody skill1_rb => _skill1Go.GetComponent<Rigidbody>();
+	public GameObject Skill1Prefab;
 	public GameObject skill2;
 	public float skill2_last_time = 4.0f;
 	public float skill3 = 5;
@@ -22,17 +24,17 @@ public class PlayerControl : MonoBehaviour {
 	private Vector3 target_position;
 	private Vector3 skill1_target_position;
 	public Rigidbody player_rb;
-	public Rigidbody skill1_rb;
 	public LayerMask layer_Terrain;
 	private float skill1_dis_last = -55;
 	private float skill2_time = -55;
 
 	void Start () {
 		// layer_Terrain = 1 << LayerMask.NameToLayer("Terrain");
+		BattleManger.Instance.AddCommonManger(this);
 		player_state = state_static;
 	}
 
-	void Update () {
+	public void CommonUpdate () {
 		//将player设置为指定的高度 将光标设置到player的脚下
 		Ray set_high_ray = new Ray(new Vector3(transform.position.x, transform.position.y + 5f, transform.position.z), Vector3.down);
 		RaycastHit player_point;
@@ -44,7 +46,7 @@ public class PlayerControl : MonoBehaviour {
 		}
 	}
 
-	void FixedUpdate() {
+	public void CommonFixedUpdate() {
 		//读取鼠标右键设置的目标位置
 		SetTarget();
 
@@ -90,9 +92,9 @@ public class PlayerControl : MonoBehaviour {
 		}
 		switch (skill1_state) {
 		case state_move:
-			float dis_now = Mathf.Abs(Vector3.Distance(skill1_target_position, skill1.transform.position));
+			float dis_now = Mathf.Abs(Vector3.Distance(skill1_target_position, _skill1Go.transform.position));
 			if (dis_now <= skill1_dis_last || skill1_dis_last < 0) {
-				skill1_target_position.y = skill1.transform.position.y;
+				skill1_target_position.y = _skill1Go.transform.position.y;
 				// skill1_rb.velocity = (skill1_target_position - skill1.transform.position).normalized * skill1_speed;
 				skill1_dis_last = dis_now;
 			} else {
@@ -141,6 +143,7 @@ public class PlayerControl : MonoBehaviour {
 		skill1_state = state_move;
 		switch (state) {
 		case state_move:
+			_skill1Go = Instantiate(Skill1Prefab);
 			skill1_dis_last = -55;
 			Ray target_ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 			RaycastHit target_hit;
@@ -148,15 +151,14 @@ public class PlayerControl : MonoBehaviour {
 			if (Physics.Raycast(target_ray, out target_hit, 600f, layer_Terrain.value)) {
 				pos = target_hit.point;
 				skill1_target_position = pos;
-				skill1.transform.position = transform.position;
+				_skill1Go.transform.position = transform.position;
 			}
-			skill1_target_position.y = skill1.transform.position.y;
-			skill1_rb.linearVelocity = (skill1_target_position - skill1.transform.position).normalized * skill1_speed;
+			skill1_target_position.y = _skill1Go.transform.position.y;
+			skill1_rb.linearVelocity = (skill1_target_position - _skill1Go.transform.position).normalized * skill1_speed;
 			break;
 		case state_static:
 			skill1_dis_last = -55;
-			skill1.transform.position = default_position;
-			skill1_rb.linearVelocity = Vector3.zero;
+			Destroy(_skill1Go);
 			break;
 		}
 	}
