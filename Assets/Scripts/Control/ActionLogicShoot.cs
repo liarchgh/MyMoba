@@ -10,8 +10,11 @@ public class ActionLogicShootEntity : EntityBase
 		GameObject.Destroy(GO);
 	}
 }
+public class ActionShootParam: ActionParam
+{
+}
 [Serializable]
-public class ActionLogicShoot: ActionLogicBase
+public class ActionLogicShoot: ActionLogicWithParamBase<ActionShootParam>
 {
 	public GameObject Prefab;
 	private List<ActionLogicShootEntity> _entities = new List<ActionLogicShootEntity>();

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 using System.Linq;
+using System;
 
 public class SubclassSelector
 {
@@ -108,12 +109,38 @@ public class SubclassSelector
 
     public object CreateSelected()
     {
-        return System.Activator.CreateInstance(m_subClasses[m_selectedType]);
+        object res = null;
+        // return System.Activator.CreateInstance(m_subClasses[m_selectedType]);
+        try
+        {
+            res = System.Activator.CreateInstance(m_subClasses[m_selectedType]);
+        }
+        catch (System.Exception e)
+        {
+            Debug.LogWarning($"m_selectedType:{m_selectedType}, m_subClasses len:{m_subClasses.Count}, m_subClasses:{string.Join(",", m_subClasses)}, {e}");
+        }
+        return res;
     }
 
     public System.Type GetClassType()
     {
         return m_subClasses[m_selectedType];
+    }
+
+    public static bool IsGenericSubclassOf(Type type, Type superType)
+    {
+        if (type.BaseType != null
+            && !type.BaseType.Equals(typeof(object))
+            && type.BaseType.IsGenericType)
+        {
+            if (type.BaseType.GetGenericTypeDefinition().Equals(superType))
+            {
+                return true;
+            }
+            return IsGenericSubclassOf(type.BaseType, superType);
+        }
+
+        return false;
     }
 }
 

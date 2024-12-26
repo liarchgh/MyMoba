@@ -10,8 +10,11 @@ public class ActionLogicContainsEntity : EntityBase
 		GameObject.Destroy(GO);
 	}
 }
+public class ActionContainsParam: ActionParam
+{
+}
 [Serializable]
-public class ActionLogicContains: ActionLogicBase
+public class ActionLogicContains: ActionLogicWithParamBase<ActionContainsParam>
 {
 	public GameObject Prefab;
 	public LayerMask TerrainLayer;
