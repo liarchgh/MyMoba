@@ -2094,7 +2094,7 @@ MonoBehaviour:
   SkillComponent:
     Skills:
     - Skill:
-        rid: 5046661095202750530
+        rid: 5046661095202750576
       Trigger:
         rid: 5046661095202750527
     - Skill:
@@ -2130,15 +2130,26 @@ MonoBehaviour:
       type: {class: LogicTriggerPressKey, ns: , asm: Assembly-CSharp}
       data:
         Key: 119
-    - rid: 5046661095202750530
+    - rid: 5046661095202750576
       type: {class: ActionLogicShoot, ns: , asm: Assembly-CSharp}
       data:
+        ActionParam:
+          StartPositionGen:
+            rid: 5046661095202750580
+          EndPositionGen:
+            rid: 5046661095202750581
         Prefab: {fileID: 1651409445499172, guid: 1bbe409e9c7712b49a1dae81c8cbe9be,
           type: 3}
+        skill1_speed: 50
+    - rid: 5046661095202750580
+      type: {class: ActionParamPlayerPositionParam, ns: , asm: Assembly-CSharp}
+      data: 
+    - rid: 5046661095202750581
+      type: {class: ActionParamMousePositionParam, ns: , asm: Assembly-CSharp}
+      data:
         layer_Terrain:
           serializedVersion: 2
           m_Bits: 256
-        skill1_speed: 50
 --- !u!23 &2062671311
 MeshRenderer:
   m_ObjectHideFlags: 0

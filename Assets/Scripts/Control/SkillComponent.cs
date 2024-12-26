@@ -12,7 +12,7 @@ public class SkillComponent
 	{
 		Skills.ForEach(x =>
 		{
-			if(x.Trigger.CheckSkillTrigger())
+			if(x.Trigger.CheckSkillTrigger() && x.Skill.PreCheckLogic())
 			{
 				// TODO: 现在只能放出一个，框架上不应有这种限制
 				x.Skill.DoLogic();

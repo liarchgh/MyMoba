@@ -10,8 +10,12 @@ public class ActionLogicContainsEntity : EntityBase
 		GameObject.Destroy(GO);
 	}
 }
-public class ActionContainsParam: ActionParam
+public class ActionContainsParam : ActionParam
 {
+	public override bool TryGenParam()
+	{
+		return true;
+	}
 }
 [Serializable]
 public class ActionLogicContains: ActionLogicWithParamBase<ActionContainsParam>

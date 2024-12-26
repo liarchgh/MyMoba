@@ -10,8 +10,18 @@ public class ActionLogicShootEntity : EntityBase
 		GameObject.Destroy(GO);
 	}
 }
+[Serializable]
 public class ActionShootParam: ActionParam
 {
+	[SerializeReference, Subclass]
+	public ActionParamSinglePositionParamBase StartPositionGen;
+	[SerializeReference, Subclass]
+	public ActionParamSinglePositionParamBase EndPositionGen;
+
+	public override bool TryGenParam()
+	{
+		return StartPositionGen.TryGenValue() && EndPositionGen.TryGenValue();
+	}
 }
 [Serializable]
 public class ActionLogicShoot: ActionLogicWithParamBase<ActionShootParam>
@@ -36,33 +46,20 @@ public class ActionLogicShoot: ActionLogicWithParamBase<ActionShootParam>
 		var go = GameObject.Instantiate(Prefab);
 		var e = new ActionLogicShootEntity(){GO = go};
 		_entities.Add(e);
-		set_skill1_state(state_move, PlayerControl.Instance.transform.position);
+		skill1_dis_last = -55;
+		skill1_target_position = ActionParam.EndPositionGen.Value;
+		_skill1Go.transform.position = ActionParam.StartPositionGen.Value;
+		skill1_target_position.y = _skill1Go.transform.position.y;
+		skill1_rb.linearVelocity = (skill1_target_position - _skill1Go.transform.position).normalized * skill1_speed;
 	}
 	public override void Clear()
 	{
 		_entities.ForEach(e => e.Clear());
 		_entities.Clear();
 	}
-	private const int state_static = 0;
-	private const int state_move = 1;
 	private float skill1_dis_last = -55;
 	private Vector3 skill1_target_position;
-	public LayerMask layer_Terrain;
 	public GameObject _skill1Go => _entities[0].GO;
 	public Rigidbody skill1_rb => _skill1Go.GetComponent<Rigidbody>();
 	public float skill1_speed = 50;
-	public void set_skill1_state(int state, Vector3 startPos) {
-			// _skill1Go = Instantiate(Skill1Prefab);
-			skill1_dis_last = -55;
-			Ray target_ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-			RaycastHit target_hit;
-			Vector3 pos;
-			if (Physics.Raycast(target_ray, out target_hit, 600f, layer_Terrain.value)) {
-				pos = target_hit.point;
-				skill1_target_position = pos;
-				_skill1Go.transform.position = startPos;
-			}
-			skill1_target_position.y = _skill1Go.transform.position.y;
-			skill1_rb.linearVelocity = (skill1_target_position - _skill1Go.transform.position).normalized * skill1_speed;
-	}
 }
