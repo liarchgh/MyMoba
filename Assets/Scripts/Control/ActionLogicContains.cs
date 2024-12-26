@@ -10,11 +10,14 @@ public class ActionLogicContainsEntity : EntityBase
 		GameObject.Destroy(GO);
 	}
 }
+[Serializable]
 public class ActionContainsParam : ActionParam
 {
+	[SerializeReference, Subclass]
+	public ActionParamSinglePositionParamBase Position;
 	public override bool TryGenParam()
 	{
-		return true;
+		return Position.TryGenValue();
 	}
 }
 [Serializable]
@@ -40,15 +43,10 @@ public class ActionLogicContains: ActionLogicWithParamBase<ActionContainsParam>
 	}
 	public override void DoLogic()
 	{
-		Ray target_ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-		RaycastHit target_hit;
 		var go = GameObject.Instantiate(Prefab);
 		_entities.Add(new ActionLogicShootEntity(){GO = go});
-		if (Physics.Raycast(target_ray, out target_hit, 600f, TerrainLayer.value)) {
-			Vector3 pos = target_hit.point;
-			Go.transform.position = pos;
-			skill2_time = Time.time;
-		}
+		Go.transform.position = ActionParam.Position.Value;
+		skill2_time = Time.time;
 	}
 	public override void Clear()
 	{

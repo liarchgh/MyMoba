@@ -2119,6 +2119,9 @@ MonoBehaviour:
     - rid: 5046661095202750528
       type: {class: ActionLogicContains, ns: , asm: Assembly-CSharp}
       data:
+        ActionParam:
+          Position:
+            rid: 5046661115204599863
         Prefab: {fileID: 827935292332683951, guid: 2b0a15816b7a550468174b4e0049b72f,
           type: 3}
         TerrainLayer:
@@ -2145,6 +2148,12 @@ MonoBehaviour:
       type: {class: ActionParamPlayerPositionParam, ns: , asm: Assembly-CSharp}
       data: 
     - rid: 5046661095202750581
+      type: {class: ActionParamMousePositionParam, ns: , asm: Assembly-CSharp}
+      data:
+        layer_Terrain:
+          serializedVersion: 2
+          m_Bits: 256
+    - rid: 5046661115204599863
       type: {class: ActionParamMousePositionParam, ns: , asm: Assembly-CSharp}
       data:
         layer_Terrain:
