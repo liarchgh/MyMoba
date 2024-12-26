@@ -10,6 +10,7 @@ public class PlayerManager : MonoBehaviour, ICommonManger {
         BattleManger.Instance.AddCommonManger(this);
 		var mainPlayer = CreatePlayer();
 		Camera.main.GetComponent<MainCameraMove>().player = mainPlayer.gameObject;
+		GetComponent<EnemyManager>().player = mainPlayer.gameObject;
 	}
 
 	public PlayerControl CreatePlayer()

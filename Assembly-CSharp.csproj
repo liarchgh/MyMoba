@@ -68,27 +68,27 @@
     <Compile Include="Assets\Scripts\EnemySkill4.cs" />
     <Compile Include="Assets\Scripts\Die.cs" />
     <Compile Include="Assets\Scripts\EnemySkill2.cs" />
-    <Compile Include="Assets\Scripts\Control\ActionLogicContains.cs" />
     <Compile Include="Assets\Scripts\EnemySkill1.cs" />
     <Compile Include="Assets\Scripts\PropertyAttributes\SubclassAttribute.cs" />
-    <Compile Include="Assets\Scripts\Control\LogicTriggerPressKey.cs" />
     <Compile Include="Assets\Scripts\EnemySkill5.cs" />
     <Compile Include="Assets\Scripts\EnemySkill3.cs" />
     <Compile Include="Assets\Scripts\EnemyAI.cs" />
     <Compile Include="Assets\Scripts\BattleManger.cs" />
-    <Compile Include="Assets\Scripts\Control\ActionLogicShoot.cs" />
     <Compile Include="Assets\Scripts\EntityBase.cs" />
     <Compile Include="Assets\Scripts\EnemyManager.cs" />
     <Compile Include="Assets\Scripts\MarkPanel.cs" />
+    <Compile Include="Assets\Scripts\LogicTrigger\LogicTriggerBase.cs" />
     <Compile Include="Assets\Scripts\Skill1.cs" />
     <Compile Include="Assets\Scripts\Skill2.cs" />
     <Compile Include="Assets\Scripts\MainCameraMove.cs" />
     <Compile Include="Assets\Scripts\Control\SkillComponent.cs" />
     <Compile Include="Assets\Scripts\PlayerManager.cs" />
     <Compile Include="Assets\Log.cs" />
+    <Compile Include="Assets\Scripts\ActionLogic\ActionLogicShoot.cs" />
+    <Compile Include="Assets\Scripts\LogicTrigger\LogicTriggerPressKey.cs" />
+    <Compile Include="Assets\Scripts\ActionLogic\ActionLogicBase.cs" />
+    <Compile Include="Assets\Scripts\ActionLogic\ActionLogicContains.cs" />
     <Compile Include="Assets\Scripts\Control\PlayerControl.cs" />
-    <Compile Include="Assets\Scripts\Control\LogicTriggerBase.cs" />
-    <Compile Include="Assets\Scripts\Control\ActionLogicBase.cs" />
     <Compile Include="Assets\Scripts\SetHeight.cs" />
   </ItemGroup>
   <ItemGroup>
