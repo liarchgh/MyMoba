@@ -96,22 +96,13 @@ public class SubclassPropertyDrawer : PropertyDrawer
                     {
                         while (!SerializedProperty.EqualContents(curProp, lastProp))
                         {
-                            position.height = EditorGUI.GetPropertyHeight(curProp);
-                            EditorGUI.PropertyField(position, curProp);
-
+                            var propHeight = EditorGUI.GetPropertyHeight(curProp);
+                            position.height = propHeight;
+                            EditorGUI.PropertyField(position, curProp, true);
                             position.y += fieldSpacing;
+                            position.y += propHeight;
 
-                            if (curProp.hasChildren && !curProp.isArray && curProp.isExpanded)
-                            {
-                                position.y += lineSize;
-                            }
-                            else
-                            {
-                                float propHeight = EditorGUI.GetPropertyHeight(curProp);
-                                position.y += propHeight;
-                            }
-
-                            if (!curProp.NextVisible(!curProp.isArray && curProp.isExpanded))
+                            if (!curProp.NextVisible(false))
                                 break;
                         }
                     }

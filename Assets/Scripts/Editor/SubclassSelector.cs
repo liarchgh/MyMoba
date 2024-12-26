@@ -21,6 +21,10 @@ public class SubclassSelector
         System.Type[] foundClasses = System.AppDomain.CurrentDomain.GetAssemblies()
          .SelectMany(assembly => assembly.GetTypes())
          .Where(type => type.IsSubclassOf(InType)).ToArray();
+        if(foundClasses.Length == 0)
+        {
+            Debug.LogWarning($"InType:{InType}, no subclass found");
+        }
 
         if (InIncludeSelf)
         {
@@ -110,7 +114,6 @@ public class SubclassSelector
     public object CreateSelected()
     {
         object res = null;
-        // return System.Activator.CreateInstance(m_subClasses[m_selectedType]);
         try
         {
             res = System.Activator.CreateInstance(m_subClasses[m_selectedType]);
@@ -125,22 +128,6 @@ public class SubclassSelector
     public System.Type GetClassType()
     {
         return m_subClasses[m_selectedType];
-    }
-
-    public static bool IsGenericSubclassOf(Type type, Type superType)
-    {
-        if (type.BaseType != null
-            && !type.BaseType.Equals(typeof(object))
-            && type.BaseType.IsGenericType)
-        {
-            if (type.BaseType.GetGenericTypeDefinition().Equals(superType))
-            {
-                return true;
-            }
-            return IsGenericSubclassOf(type.BaseType, superType);
-        }
-
-        return false;
     }
 }
 
