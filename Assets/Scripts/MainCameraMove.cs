@@ -20,6 +20,7 @@ public class MainCameraMove : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
+		if(player == null) return;
 		//设定视角是否锁定
 		if (Input.GetKeyDown(KeyCode.Y)) {
 			lock_cam = !lock_cam;

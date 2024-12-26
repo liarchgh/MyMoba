@@ -4,8 +4,10 @@ using System.Collections;
 public class PlayerControl : MonoBehaviour, ICommonManger {
 	public static PlayerControl Instance { get; private set; }
 	public SkillComponent SkillComponent = new SkillComponent();
-	public GameObject click_rig;
-	public GameObject player_position;
+	public GameObject ClickRigPrefab;
+	public GameObject PlayerPositionPrefab;
+	private GameObject click_rig;
+	private GameObject player_position;
 	private static Vector3 default_position = new Vector3(0, 2000f, 0);
 	public float player_position_high = 0.1f;
 	private const int state_static = 0;
@@ -21,7 +23,8 @@ public class PlayerControl : MonoBehaviour, ICommonManger {
 
 	void Start () {
 		// layer_Terrain = 1 << LayerMask.NameToLayer("Terrain");
-		BattleManger.Instance.AddCommonManger(this);
+		player_position = GameObject.Instantiate(PlayerPositionPrefab);
+		click_rig = GameObject.Instantiate(ClickRigPrefab);
 		player_state = state_static;
 		Instance = this;
 	}

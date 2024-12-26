@@ -84,6 +84,7 @@
     <Compile Include="Assets\Scripts\Skill2.cs" />
     <Compile Include="Assets\Scripts\MainCameraMove.cs" />
     <Compile Include="Assets\Scripts\Control\SkillComponent.cs" />
+    <Compile Include="Assets\Scripts\PlayerManager.cs" />
     <Compile Include="Assets\Log.cs" />
     <Compile Include="Assets\Scripts\Control\PlayerControl.cs" />
     <Compile Include="Assets\Scripts\Control\LogicTriggerBase.cs" />
