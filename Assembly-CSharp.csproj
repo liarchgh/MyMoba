@@ -70,7 +70,9 @@
     <Compile Include="Assets\Scripts\EnemySkill2.cs" />
     <Compile Include="Assets\Scripts\EnemySkill1.cs" />
     <Compile Include="Assets\Scripts\PropertyAttributes\SubclassAttribute.cs" />
+    <Compile Include="Assets\Scripts\ActionLogic\ActionParam\ActionParamWithValueBase.cs" />
     <Compile Include="Assets\Scripts\EnemySkill5.cs" />
+    <Compile Include="Assets\Scripts\ActionLogic\ActionParam\ActionParamBase.cs" />
     <Compile Include="Assets\Scripts\EnemySkill3.cs" />
     <Compile Include="Assets\Scripts\EnemyAI.cs" />
     <Compile Include="Assets\Scripts\BattleManger.cs" />
@@ -79,11 +81,13 @@
     <Compile Include="Assets\Scripts\MarkPanel.cs" />
     <Compile Include="Assets\Scripts\LogicTrigger\LogicTriggerBase.cs" />
     <Compile Include="Assets\Scripts\Skill1.cs" />
+    <Compile Include="Assets\Scripts\ActionLogic\ActionParam\ActionParamSingleParamBase.cs" />
     <Compile Include="Assets\Scripts\Skill2.cs" />
     <Compile Include="Assets\Scripts\MainCameraMove.cs" />
     <Compile Include="Assets\Scripts\Control\SkillComponent.cs" />
     <Compile Include="Assets\Scripts\PlayerManager.cs" />
     <Compile Include="Assets\Log.cs" />
+    <Compile Include="Assets\Scripts\ActionLogic\ActionParam\ActionParamSinglePositionParamBase.cs" />
     <Compile Include="Assets\Scripts\ActionLogic\ActionLogicShoot.cs" />
     <Compile Include="Assets\Scripts\LogicTrigger\LogicTriggerPressKey.cs" />
     <Compile Include="Assets\Scripts\ActionLogic\ActionLogicBase.cs" />

@@ -11,7 +11,7 @@ public class ActionLogicShootEntity : EntityBase
 	}
 }
 [Serializable]
-public class ActionShootParam: ActionParam
+public class ActionShootParam: ActionParamBase
 {
 	[SerializeReference, Subclass]
 	public ActionParamSinglePositionParamBase StartPositionGen;
@@ -24,7 +24,7 @@ public class ActionShootParam: ActionParam
 	}
 }
 [Serializable]
-public class ActionLogicShoot: ActionLogicWithParamBase<ActionShootParam>
+public class ActionLogicShoot: ActionParamWithValueBase<ActionShootParam>
 {
 	public GameObject Prefab;
 	private List<ActionLogicShootEntity> _entities = new List<ActionLogicShootEntity>();

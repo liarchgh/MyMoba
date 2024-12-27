@@ -11,7 +11,7 @@ public class ActionLogicContainsEntity : EntityBase
 	}
 }
 [Serializable]
-public class ActionContainsParam : ActionParam
+public class ActionContainsParam : ActionParamBase
 {
 	[SerializeReference, Subclass]
 	public ActionParamSinglePositionParamBase Position;
@@ -21,7 +21,7 @@ public class ActionContainsParam : ActionParam
 	}
 }
 [Serializable]
-public class ActionLogicContains: ActionLogicWithParamBase<ActionContainsParam>
+public class ActionLogicContains: ActionParamWithValueBase<ActionContainsParam>
 {
 	public GameObject Prefab;
 	public LayerMask TerrainLayer;
