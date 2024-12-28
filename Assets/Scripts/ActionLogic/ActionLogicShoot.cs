@@ -22,9 +22,16 @@ public class ActionShootParam: ActionParamBase
 	{
 		return StartPositionGen.TryGenValue() && EndPositionGen.TryGenValue();
 	}
+	public override ActionParamBase GenCopy()
+	{
+		return new ActionShootParam(){
+			StartPositionGen = this.StartPositionGen,
+			EndPositionGen = this.EndPositionGen,
+		};
+	}
 }
 [Serializable]
-public class ActionLogicShoot: ActionParamWithValueBase<ActionShootParam>
+public class ActionLogicShoot: ActionLocigWithParamBase<ActionShootParam>
 {
 	public GameObject Prefab;
 	private List<ActionLogicShootEntity> _entities = new List<ActionLogicShootEntity>();

@@ -19,9 +19,15 @@ public class ActionContainsParam : ActionParamBase
 	{
 		return Position.TryGenValue();
 	}
+	public override ActionParamBase GenCopy()
+	{
+		return new ActionContainsParam() {
+			Position = Position,
+		};
+	}
 }
 [Serializable]
-public class ActionLogicContains: ActionParamWithValueBase<ActionContainsParam>
+public class ActionLogicContains: ActionLocigWithParamBase<ActionContainsParam>
 {
 	public GameObject Prefab;
 	public LayerMask TerrainLayer;

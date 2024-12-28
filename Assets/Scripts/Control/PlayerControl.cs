@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class PlayerControl : MonoBehaviour, ICommonManger {
 	public static PlayerControl Instance { get; private set; }
@@ -9,11 +8,9 @@ public class PlayerControl : MonoBehaviour, ICommonManger {
 	private GameObject click_rig;
 	private GameObject player_position;
 	private static Vector3 default_position = new Vector3(0, 2000f, 0);
-	public float player_position_high = 0.1f;
 	private const int state_static = 0;
 	private const int state_move = 1;
 	public float player_high = 0.6f;//高度为2时会乱飞 loading
-	//public GameObject clickPont;
 	public float Speed = 8;
 	private int player_state = state_static;
 	private float dis_last = -555;

@@ -1,12 +1,12 @@
 using System;
 
 [Serializable]
-public abstract class ActionParamWithValueBase<T>: ActionLogicBase where T : ActionParamBase
+public abstract class ActionLocigWithParamBase<T>: ActionLogicBase where T : ActionParamBase
 {
 	public T ActionParam;
-	public override ActionParamBase GenParam()
+	public override ActionParamBase GetParam()
 	{
-		return ActionParam;
+		return ActionParam.GenCopy();
 	}
 	public override void SetParam(ActionParamBase param)
 	{
