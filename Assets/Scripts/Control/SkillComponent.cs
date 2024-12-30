@@ -10,7 +10,7 @@ public class SkillComponent
 {
 	// 下标即为ID
 	public List<SkillConfig> Skills = new List<SkillConfig>();
-	private List<SkillConfig> _runningSkills = new List<SkillConfig>();
+	private List<int> _runningSkills = new List<int>();
 	private Queue<SkillRunData> _skillRunDatas = new Queue<SkillRunData>();
 	private void CheckSkills()
 	{
@@ -42,7 +42,7 @@ public class SkillComponent
 					x.Skill.DoLogic(param);
 					// 先跑一次，优化表现
 					if(!x.Skill.FixedUpdate())
-						_runningSkills.Add(x);
+						_runningSkills.Add(sd.SkillIndex);
 				}
 			});
 		_skillRunDatas.Clear();
@@ -54,7 +54,7 @@ public class SkillComponent
 	}
 	public void CommonFixedUpdate()
 	{
-		_runningSkills = _runningSkills.Where(x => !x.Skill.FixedUpdate()).ToList();
+		_runningSkills = _runningSkills.Where(x => !Skills[x].Skill.FixedUpdate()).ToList();
 	}
 }
 public struct SkillRunData

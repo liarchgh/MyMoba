@@ -89,6 +89,7 @@
     <Compile Include="Assets\Scripts\Control\SkillComponent.cs" />
     <Compile Include="Assets\Scripts\PlayerManager.cs" />
     <Compile Include="Assets\Log.cs" />
+    <Compile Include="Assets\Scripts\IDGenerateComponent.cs" />
     <Compile Include="Assets\Scripts\ActionLogic\ActionLogicWithParamBase.cs" />
     <Compile Include="Assets\Scripts\ActionLogic\ActionLogicShoot.cs" />
     <Compile Include="Assets\Scripts\ActionLogic\ActionParam\ActionParamSingleParamPlayerPosition.cs" />

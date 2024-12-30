@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 public class PlayerControl : MonoBehaviour, ICommonManger {
-	public static PlayerControl Instance { get; private set; }
+	public uint ID { get; set; }
 	public SkillComponent SkillComponent = new SkillComponent();
 	public GameObject ClickRigPrefab;
 	public GameObject PlayerPositionPrefab;
@@ -23,7 +23,6 @@ public class PlayerControl : MonoBehaviour, ICommonManger {
 		player_position = GameObject.Instantiate(PlayerPositionPrefab);
 		click_rig = GameObject.Instantiate(ClickRigPrefab);
 		player_state = state_static;
-		Instance = this;
 	}
 
 	public void CommonUpdate () {
