@@ -13,11 +13,12 @@ public class ActionLogicContainsEntity : EntityBase
 [Serializable]
 public class ActionContainsParam : ActionParamBase
 {
+
 	[SerializeReference, Subclass]
-	public ActionParamSinglePositionParamBase Position;
+	public ActionParamSingleParamBase<Vector3> PositionParam;
 	public override bool TryGenParam(out object value)
 	{
-		var succ = Position.TryGenValue(out var pos);
+		var succ = PositionParam.TryGenValue(out var pos);
 		value = pos;
 		return succ;
 	}

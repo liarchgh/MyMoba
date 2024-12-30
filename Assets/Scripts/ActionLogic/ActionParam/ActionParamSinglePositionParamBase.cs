@@ -2,10 +2,7 @@ using System;
 using UnityEngine;
 
 [Serializable]
-// TODO: 可以删了吧，直接用父类的泛型
-public abstract class ActionParamSinglePositionParamBase : ActionParamSingleParamBase<Vector3> { }
-[Serializable]
-public class ActionParamPlayerPositionParam : ActionParamSinglePositionParamBase
+public class ActionParamPlayerPositionParam : ActionParamSingleParamBase<Vector3>
 {
     public override bool TryGenValue(out Vector3 pos)
     {
@@ -14,7 +11,7 @@ public class ActionParamPlayerPositionParam : ActionParamSinglePositionParamBase
     }
 }
 [Serializable]
-public class ActionParamMousePositionParam : ActionParamSinglePositionParamBase
+public class ActionParamMousePositionParam : ActionParamSingleParamBase<Vector3>
 {
 	public LayerMask layer_Terrain;
     public override bool TryGenValue(out Vector3 Value)

@@ -624,6 +624,15 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
+    - rid: 4169396058587660342
+      type: {class: ActionParamMousePositionParam, ns: , asm: Assembly-CSharp}
+      data:
+        layer_Terrain:
+          serializedVersion: 2
+          m_Bits: 256
+    - rid: 4169396058723450937
+      type: {class: ActionParamPlayerPositionParam, ns: , asm: Assembly-CSharp}
+      data: 
     - rid: 5046661095202750527
       type: {class: LogicTriggerPressKey, ns: , asm: Assembly-CSharp}
       data:
@@ -632,8 +641,8 @@ MonoBehaviour:
       type: {class: ActionLogicContains, ns: , asm: Assembly-CSharp}
       data:
         ActionParam:
-          Position:
-            rid: 5046661115204599863
+          PositionParam:
+            rid: 4169396058587660342
         Prefab: {fileID: 827935292332683951, guid: 2b0a15816b7a550468174b4e0049b72f,
           type: 3}
         TerrainLayer:
@@ -650,27 +659,15 @@ MonoBehaviour:
       data:
         ActionParam:
           StartPositionGen:
-            rid: 5046661095202750580
+            rid: 4169396058723450937
           EndPositionGen:
             rid: 5046661095202750581
         Prefab: {fileID: 1651409445499172, guid: 1bbe409e9c7712b49a1dae81c8cbe9be,
           type: 3}
         skill1_speed: 50
-    - rid: 5046661095202750580
-      type: {class: ActionParamPlayerPositionParam, ns: , asm: Assembly-CSharp}
-      data:
-        Value: {x: 0, y: 0, z: 0}
     - rid: 5046661095202750581
       type: {class: ActionParamMousePositionParam, ns: , asm: Assembly-CSharp}
       data:
-        Value: {x: 0, y: 0, z: 0}
-        layer_Terrain:
-          serializedVersion: 2
-          m_Bits: 256
-    - rid: 5046661115204599863
-      type: {class: ActionParamMousePositionParam, ns: , asm: Assembly-CSharp}
-      data:
-        Value: {x: 0, y: 0, z: 0}
         layer_Terrain:
           serializedVersion: 2
           m_Bits: 256

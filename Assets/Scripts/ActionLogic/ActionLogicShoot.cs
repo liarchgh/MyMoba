@@ -14,9 +14,9 @@ public class ActionLogicShootEntity : EntityBase
 public class ActionShootParam: ActionParamBase
 {
 	[SerializeReference, Subclass]
-	public ActionParamSinglePositionParamBase StartPositionGen;
+	public ActionParamSingleParamBase<Vector3> StartPositionGen;
 	[SerializeReference, Subclass]
-	public ActionParamSinglePositionParamBase EndPositionGen;
+	public ActionParamSingleParamBase<Vector3> EndPositionGen;
 
 	public override bool TryGenParam(out object value)
 	{
