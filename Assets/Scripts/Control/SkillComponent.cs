@@ -18,8 +18,8 @@ public class SkillComponent
 			.Select((skill,index) => (skill, index))
 			.Select(x =>
 			{
-				if(x.skill.Trigger.CheckSkillTrigger() && x.skill.Skill.PreCheckLogic(out var param))
-					return (true, x, param);
+				if(x.skill.Trigger.CheckSkillTrigger() && x.skill.Skill.PreCheckLogic(out var actionParams))
+					return (true, x, actionParams);
 				else
 					return (false, x, null);
 			})
@@ -60,11 +60,11 @@ public class SkillComponent
 public struct SkillRunData
 {
 	public int SkillIndex;
-	public object Param;
-	public SkillRunData(int skillID, object param)
+	public List<object> Param;
+	public SkillRunData(int skillID, List<object> actionParams)
 	{
 		SkillIndex = skillID;
-		Param = param;
+		Param = actionParams;
 	}
 }
 [Serializable]

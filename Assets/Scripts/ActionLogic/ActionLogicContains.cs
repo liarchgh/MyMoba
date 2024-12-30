@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class ActionLogicContainsEntity : EntityBase
@@ -16,15 +17,15 @@ public class ActionContainsParam : ActionParamBase
 
 	[SerializeReference, Subclass]
 	public ActionParamSingleParamBase<Vector3> PositionParam;
-	public override bool TryGenParam(out object value)
+	public override bool TryGenParam(out List<object> value)
 	{
 		var succ = PositionParam.TryGenValue(out var pos);
-		value = pos;
+		value = new List<object>{pos};
 		return succ;
 	}
-	public Vector3 GetPosition(object value)
+	public Vector3 GetPosition(List<object> value)
 	{
-		return (Vector3)value;
+		return (Vector3)value.First();
 	}
 }
 [Serializable]
@@ -48,7 +49,7 @@ public class ActionLogicContains: ActionLogicWithParamBase<ActionContainsParam>
 		}
 		return false;
 	}
-	public override void DoLogic(object value)
+	public override void DoLogic(List<object> value)
 	{
 		var go = GameObject.Instantiate(Prefab);
 		_entities.Add(new ActionLogicShootEntity(){GO = go});

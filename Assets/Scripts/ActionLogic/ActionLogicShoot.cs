@@ -18,7 +18,7 @@ public class ActionShootParam: ActionParamBase
 	[SerializeReference, Subclass]
 	public ActionParamSingleParamBase<Vector3> EndPositionGen;
 
-	public override bool TryGenParam(out object value)
+	public override bool TryGenParam(out List<object> value)
 	{
 		if(StartPositionGen.TryGenValue(out var v0)
 			&& EndPositionGen.TryGenValue(out var v1))
@@ -59,7 +59,7 @@ public class ActionLogicShoot: ActionLogicWithParamBase<ActionShootParam>
 			return true;
 		}
 	}
-	public override void DoLogic(object value)
+	public override void DoLogic(List<object> value)
 	{
 		var go = GameObject.Instantiate(Prefab);
 		var e = new ActionLogicShootEntity(){GO = go};
