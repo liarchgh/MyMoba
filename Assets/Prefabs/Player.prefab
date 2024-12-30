@@ -602,11 +602,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SkillComponent:
     Skills:
-    - Skill:
+    - Name: 
+      Skill:
         rid: 5046661095202750576
       Trigger:
         rid: 5046661095202750527
-    - Skill:
+    - Name: 
+      Skill:
         rid: 5046661095202750528
       Trigger:
         rid: 5046661095202750529
@@ -614,7 +616,6 @@ MonoBehaviour:
     type: 3}
   PlayerPositionPrefab: {fileID: 1087601212156208362, guid: b9077c2c293c42c44ac427cd0092af35,
     type: 3}
-  player_position_high: 0.1
   player_high: 1.5
   Speed: 8
   layer_Terrain:
@@ -657,16 +658,19 @@ MonoBehaviour:
         skill1_speed: 50
     - rid: 5046661095202750580
       type: {class: ActionParamPlayerPositionParam, ns: , asm: Assembly-CSharp}
-      data: 
+      data:
+        Value: {x: 0, y: 0, z: 0}
     - rid: 5046661095202750581
       type: {class: ActionParamMousePositionParam, ns: , asm: Assembly-CSharp}
       data:
+        Value: {x: 0, y: 0, z: 0}
         layer_Terrain:
           serializedVersion: 2
           m_Bits: 256
     - rid: 5046661115204599863
       type: {class: ActionParamMousePositionParam, ns: , asm: Assembly-CSharp}
       data:
+        Value: {x: 0, y: 0, z: 0}
         layer_Terrain:
           serializedVersion: 2
           m_Bits: 256

@@ -18,20 +18,31 @@ public class ActionShootParam: ActionParamBase
 	[SerializeReference, Subclass]
 	public ActionParamSinglePositionParamBase EndPositionGen;
 
-	public override bool TryGenParam()
+	public override bool TryGenParam(out object value)
 	{
-		return StartPositionGen.TryGenValue() && EndPositionGen.TryGenValue();
+		if(StartPositionGen.TryGenValue(out var v0)
+			&& EndPositionGen.TryGenValue(out var v1))
+		{
+			value = new List<object>(){v0, v1};
+			return true;
+		}
+		else
+		{
+			value = default;
+			return false;
+		}
 	}
-	public override ActionParamBase GenCopy()
+	public Vector3 GetStartPosition(object value)
 	{
-		return new ActionShootParam(){
-			StartPositionGen = this.StartPositionGen,
-			EndPositionGen = this.EndPositionGen,
-		};
+		return (Vector3)((List<object>)value)[0];
+	}
+	public Vector3 GetEndPosition(object value)
+	{
+		return (Vector3)((List<object>)value)[1];
 	}
 }
 [Serializable]
-public class ActionLogicShoot: ActionLocigWithParamBase<ActionShootParam>
+public class ActionLogicShoot: ActionLogicWithParamBase<ActionShootParam>
 {
 	public GameObject Prefab;
 	private List<ActionLogicShootEntity> _entities = new List<ActionLogicShootEntity>();
@@ -48,14 +59,14 @@ public class ActionLogicShoot: ActionLocigWithParamBase<ActionShootParam>
 			return true;
 		}
 	}
-	public override void DoLogic()
+	public override void DoLogic(object value)
 	{
 		var go = GameObject.Instantiate(Prefab);
 		var e = new ActionLogicShootEntity(){GO = go};
 		_entities.Add(e);
 		skill1_dis_last = -55;
-		skill1_target_position = ActionParam.EndPositionGen.Value;
-		_skill1Go.transform.position = ActionParam.StartPositionGen.Value;
+		skill1_target_position = ActionParam.GetEndPosition(value);
+		_skill1Go.transform.position = ActionParam.GetStartPosition(value);
 		skill1_target_position.y = _skill1Go.transform.position.y;
 		skill1_rb.linearVelocity = (skill1_target_position - _skill1Go.transform.position).normalized * skill1_speed;
 	}

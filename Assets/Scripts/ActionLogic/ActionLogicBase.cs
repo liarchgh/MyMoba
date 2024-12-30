@@ -3,10 +3,9 @@ using System;
 [Serializable]
 public abstract class ActionLogicBase
 {
-	public abstract bool PreCheckLogic();
-	public abstract ActionParamBase GetParam();
-	public abstract void SetParam(ActionParamBase param);
+	// PreCheckLogic的out参数即为DoLogic的形参
+	public abstract bool PreCheckLogic(out object value);
+	public abstract void DoLogic(object value);
 	public abstract bool FixedUpdate();
-	public abstract void DoLogic();
 	public abstract void Clear();
 }

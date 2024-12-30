@@ -15,19 +15,19 @@ public class ActionContainsParam : ActionParamBase
 {
 	[SerializeReference, Subclass]
 	public ActionParamSinglePositionParamBase Position;
-	public override bool TryGenParam()
+	public override bool TryGenParam(out object value)
 	{
-		return Position.TryGenValue();
+		var succ = Position.TryGenValue(out var pos);
+		value = pos;
+		return succ;
 	}
-	public override ActionParamBase GenCopy()
+	public Vector3 GetPosition(object value)
 	{
-		return new ActionContainsParam() {
-			Position = Position,
-		};
+		return (Vector3)value;
 	}
 }
 [Serializable]
-public class ActionLogicContains: ActionLocigWithParamBase<ActionContainsParam>
+public class ActionLogicContains: ActionLogicWithParamBase<ActionContainsParam>
 {
 	public GameObject Prefab;
 	public LayerMask TerrainLayer;
@@ -47,11 +47,11 @@ public class ActionLogicContains: ActionLocigWithParamBase<ActionContainsParam>
 		}
 		return false;
 	}
-	public override void DoLogic()
+	public override void DoLogic(object value)
 	{
 		var go = GameObject.Instantiate(Prefab);
 		_entities.Add(new ActionLogicShootEntity(){GO = go});
-		Go.transform.position = ActionParam.Position.Value;
+		Go.transform.position = ActionParam.GetPosition(value);
 		skill2_time = Time.time;
 	}
 	public override void Clear()

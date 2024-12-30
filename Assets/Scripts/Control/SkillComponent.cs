@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
+using Newtonsoft.Json;
 using UnityEngine;
 
 [Serializable]
@@ -13,10 +15,21 @@ public class SkillComponent
 	private void CheckSkills()
 	{
 		var skillsWithParams = Skills
-            .Select((skill,index) => (skill, index))
-			.Where(x => x.skill.Trigger.CheckSkillTrigger() && x.skill.Skill.PreCheckLogic())
-			.Select(x => new SkillRunData(x.index, x.skill.Skill.GetParam().GenCopy()));
-		_skillRunDatas.EnqueueRange(skillsWithParams);
+			.Select((skill,index) => (skill, index))
+			.Select(x =>
+			{
+				if(x.skill.Trigger.CheckSkillTrigger() && x.skill.Skill.PreCheckLogic(out var param))
+					return (true, x, param);
+				else
+					return (false, x, null);
+			})
+			.Where(x => x.Item1)
+			.Select(x => new SkillRunData(x.Item2.index, x.Item3));
+		AddSkillRunDatas(skillsWithParams);
+	}
+	public void AddSkillRunDatas(IEnumerable<SkillRunData> skillRunDatas)
+	{
+		_skillRunDatas.EnqueueRange(skillRunDatas);
 	}
 	private void HandleSkillLogic()
 	{
@@ -25,9 +38,8 @@ public class SkillComponent
 				var x = Skills[sd.SkillIndex];
 				var param = sd.Param;
 				{
-					x.Skill.SetParam(param);
 					// TODO: 现在只能放出一个，框架上不应有这种限制
-					x.Skill.DoLogic();
+					x.Skill.DoLogic(param);
 					// 先跑一次，优化表现
 					if(!x.Skill.FixedUpdate())
 						_runningSkills.Add(x);
@@ -44,15 +56,15 @@ public class SkillComponent
 	{
 		_runningSkills = _runningSkills.Where(x => !x.Skill.FixedUpdate()).ToList();
 	}
-	private struct SkillRunData
+}
+public struct SkillRunData
+{
+	public int SkillIndex;
+	public object Param;
+	public SkillRunData(int skillID, object param)
 	{
-		public int SkillIndex;
-		public ActionParamBase Param;
-		public SkillRunData(int skillID, ActionParamBase param)
-		{
-			SkillIndex = skillID;
-			Param = param;
-		}
+		SkillIndex = skillID;
+		Param = param;
 	}
 }
 [Serializable]
