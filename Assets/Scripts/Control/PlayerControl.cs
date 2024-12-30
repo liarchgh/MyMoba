@@ -18,18 +18,22 @@ public class PlayerControl : MonoBehaviour, ICommonManger {
 	public Rigidbody player_rb => GetComponent<Rigidbody>();
 	public LayerMask layer_Terrain;
 
-	void Start () {
+	void Awake()
+	{
+	}
+	public void CommonStart()
+	{
 		// layer_Terrain = 1 << LayerMask.NameToLayer("Terrain");
 		player_position = GameObject.Instantiate(PlayerPositionPrefab);
 		click_rig = GameObject.Instantiate(ClickRigPrefab);
 		player_state = state_static;
 	}
-
 	public void CommonUpdate () {
 		//将player设置为指定的高度 将光标设置到player的脚下
 		Ray set_high_ray = new Ray(new Vector3(transform.position.x, transform.position.y + 5f, transform.position.z), Vector3.down);
 		RaycastHit player_point;
-		if (Physics.Raycast(set_high_ray, out player_point, 60f, layer_Terrain.value)) {
+		if (Physics.Raycast(set_high_ray, out player_point, 60f, layer_Terrain.value))
+		{
 			Vector3 player_now_position = player_point.point;
 			player_position.transform.position = player_now_position;
 			player_now_position.y += player_high;

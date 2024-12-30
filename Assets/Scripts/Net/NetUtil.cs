@@ -7,6 +7,6 @@ public class NetUtil
 	public void HandleSkillInput(List<string> inputs)
 	{
 		var datas = inputs.Select(x=>x.Deserialize<SkillRunData>());
-		PlayerManager.Instance.MainPlayer.SkillComponent.AddSkillRunDatas(datas);
+		BattleManger.Instance.MainPlayer.SkillComponent.AddSkillRunDatas(datas);
 	}
 }

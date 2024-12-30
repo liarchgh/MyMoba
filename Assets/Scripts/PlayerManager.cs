@@ -3,27 +3,37 @@ using UnityEngine;
 
 public class PlayerManager : MonoBehaviour, ICommonManger {
 	public static PlayerManager Instance { get; private set; }
-	public uint MainPlayerID { get; private set; }
-	public PlayerControl MainPlayer => _players[MainPlayerID];
 	public GameObject Player;
 	private IDGenerateComponent _iDGenerateComponent = new IDGenerateComponent();
 	private Dictionary<uint, PlayerControl> _players = new Dictionary<uint, PlayerControl>();
-	public void Start () {
-		Instance = this;
+	public void Awake()
+	{
 		BattleManger.Instance.AddCommonManger(this);
-		var mainPlayer = CreatePlayer();
-		MainPlayerID = mainPlayer.ID;
-		Camera.main.GetComponent<MainCameraMove>().player = mainPlayer.gameObject;
 	}
 
-	public PlayerControl CreatePlayer()
+	public uint CreatePlayer()
 	{
 		var player = GameObject.Instantiate(Player).GetComponent<PlayerControl>();
 		player.ID = _iDGenerateComponent.GenID();
+		player.CommonStart();
 		_players.Add(player.ID, player);
+		return player.ID;
+	}
+	public bool TryGetPlayerControl(uint pid, out PlayerControl player)
+	{
+		return _players.TryGetValue(pid, out player);
+	}
+	public PlayerControl GetPlayerControl(uint pid)
+	{
+		if(!TryGetPlayerControl(pid, out var player))
+			return default;
 		return player;
 	}
 
+	public void CommonStart()
+	{
+		Instance = this;
+	}
 	public void CommonFixedUpdate ()
 	{
 		// TODO: 不同角色时序不能有影响

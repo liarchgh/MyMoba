@@ -4,7 +4,6 @@ using UnityEngine;
 
 
 public class MainCameraMove : MonoBehaviour {
-	public GameObject player;
 	public bool lock_cam = true;//是否锁定视角
 	public float speed = 40f;//视角移动速度
 	private float cam_high = 15;//视角高度
@@ -20,7 +19,6 @@ public class MainCameraMove : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		if(player == null) return;
 		//设定视角是否锁定
 		if (Input.GetKeyDown(KeyCode.Y)) {
 			lock_cam = !lock_cam;
@@ -28,7 +26,7 @@ public class MainCameraMove : MonoBehaviour {
 
 		//如果锁定或者按下空格键设定视角位置到物体 否则判断鼠标位置并移动视角
 		if (Input.GetKey(KeyCode.Space) || lock_cam) {
-			transform.position = player.transform.position + dis_plus;
+			transform.position = GetTarget().transform.position + dis_plus;
 		}
 		else {
 			if (Input.mousePosition.x >= Screen.width * 0.99f) {
@@ -59,5 +57,9 @@ public class MainCameraMove : MonoBehaviour {
 			cam_set_high *= cam_high / cam_set_high.y ;
 			transform.position = cam_set_high + target_hit.point;
 		}
+	}
+	public GameObject GetTarget()
+	{
+		return BattleManger.Instance.MainPlayer.gameObject;
 	}
 }

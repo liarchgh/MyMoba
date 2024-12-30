@@ -15,12 +15,16 @@ public class EnemyManager : MonoBehaviour, ICommonManger {
 	private List<GameObject> now = new List<GameObject>();
 
 	// Use this for initialization
-	public void Start () {
+	public void Start ()
+	{
 		BattleManger.Instance.AddCommonManger(this);
+	}
+
+	public void CommonStart()
+	{
 		numberOfKilledEnemies = 0;
 		scoreText.text = numberOfKilledEnemies.ToString();
 	}
-
 	// Update is called once per frame
 	public void CommonFixedUpdate () {
 		//增大敌人总数量
@@ -56,6 +60,6 @@ public class EnemyManager : MonoBehaviour, ICommonManger {
 	}
 	public GameObject GetTarget()
 	{
-		return PlayerManager.Instance.MainPlayer.gameObject;
+		return BattleManger.Instance.MainPlayer.gameObject;
 	}
 }
