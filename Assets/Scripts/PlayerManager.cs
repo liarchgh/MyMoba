@@ -10,11 +10,10 @@ public class PlayerManager : MonoBehaviour, ICommonManger {
 	private Dictionary<uint, PlayerControl> _players = new Dictionary<uint, PlayerControl>();
 	public void Start () {
 		Instance = this;
-        BattleManger.Instance.AddCommonManger(this);
+		BattleManger.Instance.AddCommonManger(this);
 		var mainPlayer = CreatePlayer();
 		MainPlayerID = mainPlayer.ID;
 		Camera.main.GetComponent<MainCameraMove>().player = mainPlayer.gameObject;
-		GetComponent<EnemyManager>().player = mainPlayer.gameObject;
 	}
 
 	public PlayerControl CreatePlayer()
