@@ -10,7 +10,7 @@ public class SkillComponent
 {
 	// 下标即为ID
 	public List<SkillConfig> Skills = new List<SkillConfig>();
-	private List<int> _runningSkills = new List<int>();
+	private List<SkillRunData> _runningSkills = new List<SkillRunData>();
 	private Queue<SkillRunData> _skillRunDatas = new Queue<SkillRunData>();
 	private void CheckSkills()
 	{
@@ -41,8 +41,8 @@ public class SkillComponent
 					// TODO: 现在只能放出一个，框架上不应有这种限制
 					x.Skill.DoLogic(param);
 					// 先跑一次，优化表现
-					if(!x.Skill.FixedUpdate())
-						_runningSkills.Add(sd.SkillIndex);
+					if(!x.Skill.FixedUpdate(param))
+						_runningSkills.Add(sd);
 				}
 			});
 		_skillRunDatas.Clear();
@@ -54,7 +54,9 @@ public class SkillComponent
 	}
 	public void CommonFixedUpdate()
 	{
-		_runningSkills = _runningSkills.Where(x => !Skills[x].Skill.FixedUpdate()).ToList();
+		_runningSkills = _runningSkills
+			.Where(x => !Skills[x.SkillIndex].Skill.FixedUpdate(x.Param))
+			.ToList();
 	}
 }
 public struct SkillRunData

@@ -11,9 +11,11 @@ public class SubclassSelector
     string[] m_subClassNames;
 
     int m_selectedType;
+    private Type InType;
 
     public SubclassSelector(System.Type InType, System.Type InDefault = null, bool InIncludeSelf = false)
     {
+        this.InType = InType;
         m_selectedType = -1;
 
         m_subClasses = new List<System.Type>();
@@ -120,7 +122,7 @@ public class SubclassSelector
         }
         catch (System.Exception e)
         {
-            Debug.LogWarning($"m_selectedType:{m_selectedType}, m_subClasses len:{m_subClasses.Count}, m_subClasses:{string.Join(",", m_subClasses)}, {e}");
+            Debug.LogWarning($"InType:{InType}, m_selectedType:{m_selectedType}, m_subClasses len:{m_subClasses.Count}, m_subClasses:{string.Join(",", m_subClasses)}, {e}");
         }
         return res;
     }

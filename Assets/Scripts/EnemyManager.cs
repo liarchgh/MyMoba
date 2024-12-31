@@ -15,7 +15,7 @@ public class EnemyManager : MonoBehaviour, ICommonManger {
 	private List<GameObject> now = new List<GameObject>();
 
 	// Use this for initialization
-	public void Start ()
+	public void Awake ()
 	{
 		BattleManger.Instance.AddCommonManger(this);
 	}

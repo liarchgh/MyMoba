@@ -66,6 +66,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\EnemySkill4.cs" />
+    <Compile Include="Assets\Scripts\ActionLogicGameObjectEntity.cs" />
     <Compile Include="Assets\Scripts\Die.cs" />
     <Compile Include="Assets\Scripts\ActionLogic\ActionParam\ActionParamSingleParamMousePosition.cs" />
     <Compile Include="Assets\Scripts\EnemySkill2.cs" />
@@ -80,6 +81,8 @@
     <Compile Include="Assets\Scripts\EntityBase.cs" />
     <Compile Include="Assets\Scripts\EnemyManager.cs" />
     <Compile Include="Assets\Scripts\MarkPanel.cs" />
+    <Compile Include="Assets\Scripts\ActionLogic\ActionParam\ActionParamSingleParamMainPlayer.cs" />
+    <Compile Include="Assets\Scripts\ActionLogic\ActionLogicMove.cs" />
     <Compile Include="Assets\Scripts\LogicTrigger\LogicTriggerBase.cs" />
     <Compile Include="Assets\Scripts\Utils\IEnumerableUtil.cs" />
     <Compile Include="Assets\Scripts\Skill1.cs" />

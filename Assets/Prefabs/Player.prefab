@@ -602,18 +602,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SkillComponent:
     Skills:
-    - Name: 
+    - Name: move
+      Skill:
+        rid: 4169396078784544822
+      Trigger:
+        rid: 5046661095202750530
+    - Name: q
       Skill:
         rid: 5046661095202750576
       Trigger:
         rid: 5046661095202750527
-    - Name: 
+    - Name: w
       Skill:
         rid: 5046661095202750528
       Trigger:
         rid: 5046661095202750529
-  ClickRigPrefab: {fileID: 5555578093110264772, guid: 1c4235b0a6cddd240bd32a85af8d7374,
-    type: 3}
   PlayerPositionPrefab: {fileID: 1087601212156208362, guid: b9077c2c293c42c44ac427cd0092af35,
     type: 3}
   player_high: 1.5
@@ -633,6 +636,26 @@ MonoBehaviour:
     - rid: 4169396058723450937
       type: {class: ActionParamPlayerPositionParam, ns: , asm: Assembly-CSharp}
       data: 
+    - rid: 4169396078784544822
+      type: {class: ActionLogicMove, ns: , asm: Assembly-CSharp}
+      data:
+        ActionParam:
+          ActionTransform:
+            rid: 4169396078784544825
+          TargetPosition:
+            rid: 4169396078784544826
+        Speed: 8
+        ClickRigPrefab: {fileID: 5555578093110264772, guid: 1c4235b0a6cddd240bd32a85af8d7374,
+          type: 3}
+    - rid: 4169396078784544825
+      type: {class: ActionParamSingleParamMainPlayer, ns: , asm: Assembly-CSharp}
+      data: 
+    - rid: 4169396078784544826
+      type: {class: ActionParamMousePositionParam, ns: , asm: Assembly-CSharp}
+      data:
+        layer_Terrain:
+          serializedVersion: 2
+          m_Bits: 256
     - rid: 5046661095202750527
       type: {class: LogicTriggerPressKey, ns: , asm: Assembly-CSharp}
       data:
@@ -654,6 +677,10 @@ MonoBehaviour:
       type: {class: LogicTriggerPressKey, ns: , asm: Assembly-CSharp}
       data:
         Key: 119
+    - rid: 5046661095202750530
+      type: {class: LogicTriggerPressKey, ns: , asm: Assembly-CSharp}
+      data:
+        Key: 324
     - rid: 5046661095202750576
       type: {class: ActionLogicShoot, ns: , asm: Assembly-CSharp}
       data:

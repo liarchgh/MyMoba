@@ -2,14 +2,6 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ActionLogicShootEntity : EntityBase
-{
-	public GameObject GO;
-	public override void Clear()
-	{
-		GameObject.Destroy(GO);
-	}
-}
 [Serializable]
 public class ActionShootParam: ActionParamBase
 {
@@ -45,8 +37,8 @@ public class ActionShootParam: ActionParamBase
 public class ActionLogicShoot: ActionLogicWithParamBase<ActionShootParam>
 {
 	public GameObject Prefab;
-	private List<ActionLogicShootEntity> _entities = new List<ActionLogicShootEntity>();
-	public override bool FixedUpdate()
+	private List<ActionLogicGameObjectEntity> _entities = new List<ActionLogicGameObjectEntity>();
+	public override bool FixedUpdate(List<object> value)
 	{
 		float dis_now = Mathf.Abs(Vector3.Distance(skill1_target_position, _skill1Go.transform.position));
 		if (dis_now <= skill1_dis_last || skill1_dis_last < 0) {
@@ -62,7 +54,7 @@ public class ActionLogicShoot: ActionLogicWithParamBase<ActionShootParam>
 	public override void DoLogic(List<object> value)
 	{
 		var go = GameObject.Instantiate(Prefab);
-		var e = new ActionLogicShootEntity(){GO = go};
+		var e = new ActionLogicGameObjectEntity(){GO = go};
 		_entities.Add(e);
 		skill1_dis_last = -55;
 		skill1_target_position = ActionParam.GetEndPosition(value);

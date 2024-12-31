@@ -3,18 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class ActionLogicContainsEntity : EntityBase
-{
-	public GameObject GO;
-	public override void Clear()
-	{
-		GameObject.Destroy(GO);
-	}
-}
 [Serializable]
 public class ActionContainsParam : ActionParamBase
 {
-
 	[SerializeReference, Subclass]
 	public ActionParamSingleParamBase<Vector3> PositionParam;
 	public override bool TryGenParam(out List<object> value)
@@ -33,12 +24,12 @@ public class ActionLogicContains: ActionLogicWithParamBase<ActionContainsParam>
 {
 	public GameObject Prefab;
 	public LayerMask TerrainLayer;
-	private List<ActionLogicShootEntity> _entities = new List<ActionLogicShootEntity>();
+	private List<ActionLogicGameObjectEntity> _entities = new List<ActionLogicGameObjectEntity>();
 	private GameObject Go => _entities[0].GO;
 	private float skill2_time = -55;
 	public float skill2_last_time = 4.0f;
 	public Vector3 default_position = new Vector3(0, 2000f, 0);
-	public override bool FixedUpdate()
+	public override bool FixedUpdate(List<object> value)
 	{
 		if (skill2_time >= 0) {
 			if (Time.time > skill2_time + skill2_last_time) {
@@ -52,7 +43,7 @@ public class ActionLogicContains: ActionLogicWithParamBase<ActionContainsParam>
 	public override void DoLogic(List<object> value)
 	{
 		var go = GameObject.Instantiate(Prefab);
-		_entities.Add(new ActionLogicShootEntity(){GO = go});
+		_entities.Add(new ActionLogicGameObjectEntity(){GO = go});
 		Go.transform.position = ActionParam.GetPosition(value);
 		skill2_time = Time.time;
 	}
