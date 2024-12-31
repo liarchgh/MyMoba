@@ -37,14 +37,16 @@ public class ActionShootParam: ActionParamBase
 public class ActionLogicShoot: ActionLogicWithParamBase<ActionShootParam>
 {
 	public GameObject Prefab;
+	public float Speed = 50;
 	private List<ActionLogicGameObjectEntity> _entities = new List<ActionLogicGameObjectEntity>();
+	private GameObject _go => _entities[0].GO;
+	private Rigidbody _rb => _go.GetComponent<Rigidbody>();
+	private float _lastDis;
 	public override bool FixedUpdate(List<object> value)
 	{
-		float dis_now = Mathf.Abs(Vector3.Distance(skill1_target_position, _skill1Go.transform.position));
-		if (dis_now <= skill1_dis_last || skill1_dis_last < 0) {
-			skill1_target_position.y = _skill1Go.transform.position.y;
-			// skill1_rb.velocity = (skill1_target_position - skill1.transform.position).normalized * skill1_speed;
-			skill1_dis_last = dis_now;
+		float dis_now = GetDis(value);
+		if (dis_now <= _lastDis || _lastDis < 0) {
+			_lastDis = dis_now;
 			return false;
 		} else {
 			Clear();
@@ -57,20 +59,21 @@ public class ActionLogicShoot: ActionLogicWithParamBase<ActionShootParam>
 		var go = GameObject.Instantiate(Prefab);
 		var e = new ActionLogicGameObjectEntity(){GO = go};
 		_entities.Add(e);
-		skill1_dis_last = -55;
-		skill1_target_position = ActionParam.GetEndPosition(value);
-		_skill1Go.transform.position = ActionParam.GetStartPosition(value);
-		skill1_target_position.y = _skill1Go.transform.position.y;
-		skill1_rb.linearVelocity = (skill1_target_position - _skill1Go.transform.position).normalized * skill1_speed;
+		var targetPos = ActionParam.GetEndPosition(value);
+		_go.transform.position = ActionParam.GetStartPosition(value);
+		targetPos.y = _go.transform.position.y;
+		_rb.linearVelocity = (targetPos - _go.transform.position).normalized * Speed;
+		_lastDis = -1;
 	}
 	public override void Clear()
 	{
 		_entities.ForEach(e => e.Clear());
 		_entities.Clear();
 	}
-	private float skill1_dis_last = -55;
-	private Vector3 skill1_target_position;
-	public GameObject _skill1Go => _entities[0].GO;
-	public Rigidbody skill1_rb => _skill1Go.GetComponent<Rigidbody>();
-	public float skill1_speed = 50;
+	private float GetDis(List<object> value)
+	{
+		var targetPos = ActionParam.GetEndPosition(value);
+		targetPos.y = _go.transform.position.y;
+		return Mathf.Abs(Vector3.Distance(targetPos, _go.transform.position));
+	}
 }
