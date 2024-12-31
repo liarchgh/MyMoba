@@ -668,8 +668,7 @@ MonoBehaviour:
         TerrainLayer:
           serializedVersion: 2
           m_Bits: 256
-        skill2_last_time: 4
-        default_position: {x: 0, y: 2000, z: 0}
+        ContainTimeLength: 4
     - rid: 4169396081048158267
       type: {class: LogicTriggerPressKey, ns: , asm: Assembly-CSharp}
       data:

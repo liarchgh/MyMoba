@@ -53,6 +53,7 @@ public class ActionLogicShoot: ActionLogicWithParamBase<ActionShootParam>
 	}
 	public override void DoLogic(List<object> value)
 	{
+		base.DoLogic(value);
 		var go = GameObject.Instantiate(Prefab);
 		var e = new ActionLogicGameObjectEntity(){GO = go};
 		_entities.Add(e);

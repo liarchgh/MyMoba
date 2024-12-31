@@ -24,28 +24,21 @@ public class ActionLogicContains: ActionLogicWithParamBase<ActionContainsParam>
 {
 	public GameObject Prefab;
 	public LayerMask TerrainLayer;
+	public float ContainTimeLength = 4.0f;
 	private List<ActionLogicGameObjectEntity> _entities = new List<ActionLogicGameObjectEntity>();
 	private GameObject Go => _entities[0].GO;
-	private float skill2_time = -55;
-	public float skill2_last_time = 4.0f;
-	public Vector3 default_position = new Vector3(0, 2000f, 0);
 	public override bool FixedUpdate(List<object> value)
 	{
-		if (skill2_time >= 0) {
-			if (Time.time > skill2_time + skill2_last_time) {
-				skill2_time = -55;
-				Clear();
-				return true;
-			}
-		}
-		return false;
+		var done = TimeUtil.GetTime() > ActionParam.DoTime + ContainTimeLength;
+		if (done) Clear();
+		return done;
 	}
 	public override void DoLogic(List<object> value)
 	{
+		base.DoLogic(value);
 		var go = GameObject.Instantiate(Prefab);
 		_entities.Add(new ActionLogicGameObjectEntity(){GO = go});
 		Go.transform.position = ActionParam.GetPosition(value);
-		skill2_time = Time.time;
 	}
 	public override void Clear()
 	{

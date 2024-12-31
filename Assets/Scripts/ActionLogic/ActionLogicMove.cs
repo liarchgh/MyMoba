@@ -72,6 +72,7 @@ public class ActionLogicMove: ActionLogicWithParamBase<ActionMoveParam>
 	}
 	public override void DoLogic(List<object> value)
 	{
+		base.DoLogic(value);
 		var rb = ActionParam.GetActionRigidbody(value);
 		var pos = ActionParam.GetTargetPosition(value);
 		rb.linearVelocity = (pos - rb.position).normalized * Speed;
