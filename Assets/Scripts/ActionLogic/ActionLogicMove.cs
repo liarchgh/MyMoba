@@ -15,9 +15,9 @@ public class ActionMoveEntity : EntityBase
 [Serializable]
 public class ActionMoveParam: ActionParamBase
 {
-	[SerializeReference, Subclass]
+	[SerializeReference]
 	public ActionParamSingleParamBase<uint> ActionTransform;
-	[SerializeReference, Subclass]
+	[SerializeReference]
 	public ActionParamSingleParamBase<Vector3> TargetPosition;
 
 	public override bool TryGenParam(out List<object> value)

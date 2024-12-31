@@ -5,9 +5,9 @@ using UnityEngine;
 [Serializable]
 public class ActionShootParam: ActionParamBase
 {
-	[SerializeReference, Subclass]
+	[SerializeReference]
 	public ActionParamSingleParamBase<Vector3> StartPositionGen;
-	[SerializeReference, Subclass]
+	[SerializeReference]
 	public ActionParamSingleParamBase<Vector3> EndPositionGen;
 
 	public override bool TryGenParam(out List<object> value)

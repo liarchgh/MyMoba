@@ -74,8 +74,8 @@ public struct SkillRunData
 public class SkillConfig
 {
 	public string Name;
-	[SerializeReference, Subclass]
+	[SerializeReference]
 	public ActionLogicBase Skill;
-	[SerializeReference, Subclass]
+	[SerializeReference]
 	public LogicTriggerBase Trigger;
 }

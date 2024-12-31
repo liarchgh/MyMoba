@@ -6,7 +6,7 @@ using UnityEngine;
 [Serializable]
 public class ActionContainsParam : ActionParamBase
 {
-	[SerializeReference, Subclass]
+	[SerializeReference]
 	public ActionParamSingleParamBase<Vector3> PositionParam;
 	public override bool TryGenParam(out List<object> value)
 	{
