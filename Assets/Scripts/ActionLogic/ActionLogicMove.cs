@@ -75,11 +75,12 @@ public class ActionLogicMove: ActionLogicWithParamBase<ActionMoveParam>
 		base.DoLogic(value);
 		var rb = ActionParam.GetActionRigidbody(value);
 		var pos = ActionParam.GetTargetPosition(value);
-		pos.y = rb.position.y;
-		rb.linearVelocity = (pos - rb.position).normalized * Speed;
 		var rig = GameObject.Instantiate(ClickRigPrefab);
 		rig.transform.position = pos;
 		_entities.Add(new ActionLogicGameObjectEntity(){GO = rig});
+
+		pos.y = rb.position.y;
+		rb.linearVelocity = (pos - rb.position).normalized * Speed;
 		dis_last = -1;
 		_moving = true;
 	}

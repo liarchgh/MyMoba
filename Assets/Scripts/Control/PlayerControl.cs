@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerControl : MonoBehaviour, ICommonManger {
 	public uint ID { get; set; }
@@ -9,6 +10,8 @@ public class PlayerControl : MonoBehaviour, ICommonManger {
 	public float Speed = 8;
 	public Rigidbody player_rb => GetComponent<Rigidbody>();
 	public LayerMask layer_Terrain;
+	public Slider HPSlider;
+	public HPComponent HPComponent = new HPComponent();
 
 	public void CommonStart()
 	{

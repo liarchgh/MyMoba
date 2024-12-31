@@ -24,7 +24,9 @@ public class EnemySkill4 : MonoBehaviour {
 	}
 
 	void OnTriggerEnter(Collider obj) {
-		//Debug.Log("ENter");
-		obj.gameObject.GetComponentInChildren<Slider>().value -= skill1_attack;
+		if(obj.GetComponent<PlayerControl>())
+		{
+			obj.gameObject.GetComponentInChildren<Slider>().value -= skill1_attack;
+		}
 	}
 }
