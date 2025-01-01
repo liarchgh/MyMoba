@@ -489,6 +489,7 @@ GameObject:
   - component: {fileID: 6277032170253200156}
   - component: {fileID: 2548787909598938166}
   - component: {fileID: 3683956759427431060}
+  - component: {fileID: 9124969368105112014}
   m_Layer: 11
   m_Name: Player
   m_TagString: Untagged
@@ -652,7 +653,7 @@ MonoBehaviour:
             rid: 4169396081048158271
         Prefab: {fileID: 1651409445499172, guid: 1bbe409e9c7712b49a1dae81c8cbe9be,
           type: 3}
-        skill1_speed: 50
+        Speed: 50
     - rid: 4169396081048158265
       type: {class: LogicTriggerPressKey, ns: , asm: Assembly-CSharp}
       data:
@@ -739,6 +740,20 @@ MonoBehaviour:
   hp: {fileID: 1136476394922326255}
   dieAnimation: {fileID: 1150939096144506, guid: 96a02e7cde142854ba3f556c4cf30a41,
     type: 3}
+--- !u!114 &9124969368105112014
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3326835224430214212}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eeca59439fec3a1408a28ec19a250aca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_hpSlider: {fileID: 1136476394922326255}
+  m_maxHP: 2000
 --- !u!1 &6055619252548992153
 GameObject:
   m_ObjectHideFlags: 0

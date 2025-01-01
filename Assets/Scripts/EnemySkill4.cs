@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class EnemySkill4 : MonoBehaviour {
 	public float rotate_speed = 450f;
-	public float skill1_attack = 500f;
+	public uint skill1_attack = 500;
 
 	// Use this for initialization
 	void Start () {
@@ -24,9 +24,9 @@ public class EnemySkill4 : MonoBehaviour {
 	}
 
 	void OnTriggerEnter(Collider obj) {
-		if(obj.GetComponent<PlayerControl>())
+		if(obj.TryGetComponent<HPComponent>(out var hp))
 		{
-			obj.gameObject.GetComponentInChildren<Slider>().value -= skill1_attack;
+			hp.RemoveHP(skill1_attack);
 		}
 	}
 }

@@ -1,17 +1,21 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
+[RequireComponent(typeof(HPComponent))]
 public class PlayerControl : MonoBehaviour, ICommonManger {
 	public uint ID { get; set; }
+	[SerializeField]
 	public SkillComponent SkillComponent = new SkillComponent();
-	public GameObject PlayerPositionPrefab;
+	[SerializeField]
+	private GameObject PlayerPositionPrefab;
 	private GameObject player_position;
-	public float player_high = 0.6f;//高度为2时会乱飞 loading
+	[SerializeField]
+	private float player_high = 0.6f;//高度为2时会乱飞 loading
+	[SerializeField]
 	public float Speed = 8;
-	public Rigidbody player_rb => GetComponent<Rigidbody>();
-	public LayerMask layer_Terrain;
-	public Slider HPSlider;
-	public HPComponent HPComponent = new HPComponent();
+	[SerializeField]
+	private LayerMask layer_Terrain;
+	private HPComponent HPComponent => GetComponent<HPComponent>();
 
 	public void CommonStart()
 	{
