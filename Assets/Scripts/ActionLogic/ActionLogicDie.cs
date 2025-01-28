@@ -65,7 +65,7 @@ public class ActionLogicDie: ActionLogicWithParamBase<ActionDieParam>
 			dis_last = dis_now;
 		} else {
 			rb.linearVelocity = Vector3.zero;
-			Clear();
+			Stop(value);
 			_moving = false;
 		}
 		return !_moving;
@@ -85,7 +85,7 @@ public class ActionLogicDie: ActionLogicWithParamBase<ActionDieParam>
 		_moving = true;
 	}
 
-	public override void Clear()
+	public override void Stop(List<object> value)
 	{
 		_entities.ForEach(e => e.Clear());
 		_entities.Clear();

@@ -19,7 +19,8 @@ public class SkillComponent
 			.Select((skill,index) => (skill, index))
 			.Select(x =>
 			{
-				if(x.skill.Trigger.CheckSkillTrigger() && x.skill.Skill.PreCheckLogic(out var actionParams))
+				if(x.skill.Trigger.CheckSkillTrigger()
+						&& x.skill.Skill.PreCheckLogic(out var actionParams))
 					return (true, x, actionParams);
 				else
 					return (false, x, null);
@@ -37,14 +38,26 @@ public class SkillComponent
 		_skillRunDatas.ForEach(sd =>
 			{
 				var x = Skills[sd.SkillIndex];
-				var param = sd.Param;
+				switch(x.RunType)
 				{
-					// TODO: 现在只能放出一个，框架上不应有这种限制
-					x.Skill.DoLogic(param);
-					// 先跑一次，优化表现
-					if(!x.Skill.FixedUpdate(param))
-						_runningSkills.Add(sd);
+					case SkillRunType.OnlyOne:
+						_runningSkills
+							.Where(x => x.SkillIndex == sd.SkillIndex)
+							.ForEach(x => Skills[x.SkillIndex].Skill.Stop(x.Param))
+						;
+						_runningSkills =
+							_runningSkills
+							.Where(x => x.SkillIndex != sd.SkillIndex)
+							.ToList()
+						;
+					break;
 				}
+				var param = sd.Param;
+				x.Skill.DoLogic(param);
+				// FixedUpdate先跑一次的话虽然可以优化表现，
+				// 但是Move跑这里的时候还是上一帧的速度，和上边DoLogic不一样，
+				// 会导致再下一帧会向反向走，会认为已经跨过目标点了
+				_runningSkills.Add(sd);
 			});
 		_skillRunDatas.Clear();
 	}
@@ -70,10 +83,16 @@ public struct SkillRunData
 		Param = actionParams;
 	}
 }
+public enum SkillRunType
+{
+	OnlyOne = 1,
+	Multi = 2,
+}
 [Serializable]
 public class SkillConfig
 {
 	public string Name;
+	public SkillRunType RunType = SkillRunType.Multi;
 	[SerializeReference]
 	public ActionLogicBase Skill;
 	[SerializeReference]

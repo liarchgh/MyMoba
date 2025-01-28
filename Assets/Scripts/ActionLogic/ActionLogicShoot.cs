@@ -49,7 +49,7 @@ public class ActionLogicShoot: ActionLogicWithParamBase<ActionShootParam>
 			_lastDis = dis_now;
 			return false;
 		} else {
-			Clear();
+			Stop(value);
 			return true;
 		}
 	}
@@ -65,7 +65,7 @@ public class ActionLogicShoot: ActionLogicWithParamBase<ActionShootParam>
 		_rb.linearVelocity = (targetPos - _go.transform.position).normalized * Speed;
 		_lastDis = -1;
 	}
-	public override void Clear()
+	public override void Stop(List<object> value)
 	{
 		_entities.ForEach(e => e.Clear());
 		_entities.Clear();

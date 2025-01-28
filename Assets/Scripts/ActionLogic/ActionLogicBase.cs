@@ -8,5 +8,5 @@ public abstract class ActionLogicBase
 	public abstract bool PreCheckLogic(out List<object> value);
 	public abstract void DoLogic(List<object> value);
 	public abstract bool FixedUpdate(List<object> value);
-	public abstract void Clear();
+	public abstract void Stop(List<object> value);
 }

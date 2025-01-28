@@ -50,23 +50,29 @@ public class ActionLogicMove: ActionLogicWithParamBase<ActionMoveParam>
 		new List<ActionLogicGameObjectEntity>();
 	public float Speed = 1;
 	public GameObject ClickRigPrefab;
-	private bool _moving = false;
+	public bool __moving = false;
+	private bool _moving {
+		get { return __moving; }
+		set { __moving = value;
+		Debug.Log($"ls_db set __moving:{__moving}");
+		; }
+
+	}
 	private float dis_last;
 	public override bool FixedUpdate(List<object> value)
 	{
 		if(!_moving) return true;
 
 		var rb = ActionParam.GetActionRigidbody(value);
-		var pos = ActionParam.GetTargetPosition(value);
+		var targetPos = ActionParam.GetTargetPosition(value);
 		//用和目的地距离变远作为终止条件 但是在碰撞后被弹回会停止
-		pos.y = rb.position.y;
-		float dis_now = Mathf.Abs(Vector3.Distance(pos, rb.position));
-		if ((dis_now <= dis_last || dis_last < 0) && dis_now > 0.2f) {
+		targetPos.y = rb.position.y;
+		var dis_now = Vector3.Distance(targetPos, rb.position);
+		Debug.Log($"ls_db dis_last:{dis_last}, dis_now:{dis_now}");
+		if ((dis_now <= dis_last || dis_last < 0) && dis_now > 0.02f) {
 			dis_last = dis_now;
 		} else {
-			rb.linearVelocity = Vector3.zero;
-			Clear();
-			_moving = false;
+			Stop(value);
 		}
 		return !_moving;
 	}
@@ -85,8 +91,11 @@ public class ActionLogicMove: ActionLogicWithParamBase<ActionMoveParam>
 		_moving = true;
 	}
 
-	public override void Clear()
+	public override void Stop(List<object> value)
 	{
+		var rb = ActionParam.GetActionRigidbody(value);
+		rb.linearVelocity = Vector3.zero;
+		_moving = false;
 		_entities.ForEach(e => e.Clear());
 		_entities.Clear();
 	}

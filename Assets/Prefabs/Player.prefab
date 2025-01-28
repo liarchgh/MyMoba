@@ -604,16 +604,19 @@ MonoBehaviour:
   SkillComponent:
     Skills:
     - Name: move
+      RunType: 1
       Skill:
         rid: 4169396081048158262
       Trigger:
         rid: 4169396081048158263
     - Name: q
+      RunType: 2
       Skill:
         rid: 4169396081048158264
       Trigger:
         rid: 4169396081048158265
     - Name: w
+      RunType: 2
       Skill:
         rid: 4169396081048158266
       Trigger:
@@ -639,6 +642,7 @@ MonoBehaviour:
         Speed: 8
         ClickRigPrefab: {fileID: 5555578093110264772, guid: 1c4235b0a6cddd240bd32a85af8d7374,
           type: 3}
+        __moving: 0
     - rid: 4169396081048158263
       type: {class: LogicTriggerPressKey, ns: , asm: Assembly-CSharp}
       data:
@@ -754,6 +758,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_hpSlider: {fileID: 1136476394922326255}
   m_maxHP: 2000
+  m_dieAnimationPrefab: {fileID: 0}
+  m_dieAnimationTimeLength: 0
 --- !u!1 &6055619252548992153
 GameObject:
   m_ObjectHideFlags: 0

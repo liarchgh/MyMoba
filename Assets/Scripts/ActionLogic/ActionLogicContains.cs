@@ -30,7 +30,7 @@ public class ActionLogicContains: ActionLogicWithParamBase<ActionContainsParam>
 	public override bool FixedUpdate(List<object> value)
 	{
 		var done = TimeUtil.GetTime() > ActionParam.DoTime + ContainTimeLength;
-		if (done) Clear();
+		if (done) Stop(value);
 		return done;
 	}
 	public override void DoLogic(List<object> value)
@@ -40,7 +40,7 @@ public class ActionLogicContains: ActionLogicWithParamBase<ActionContainsParam>
 		_entities.Add(new ActionLogicGameObjectEntity(){GO = go});
 		Go.transform.position = ActionParam.GetPosition(value);
 	}
-	public override void Clear()
+	public override void Stop(List<object> value)
 	{
 		_entities.ForEach(e => e.Clear());
 		_entities.Clear();
