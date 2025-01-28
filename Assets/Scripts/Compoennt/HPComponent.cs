@@ -13,6 +13,9 @@ public class HPComponent: MonoBehaviour
 	[SerializeField]
 	private float m_dieAnimationTimeLength;
 	public uint HPValue { get; private set; }
+	void Awake() {
+		HPValue = m_maxHP;
+	}
 
 	public void AddHP(uint hpChange)
 	{

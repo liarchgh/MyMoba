@@ -243,6 +243,7 @@ GameObject:
   - component: {fileID: 114829594577104414}
   - component: {fileID: 54564146121806026}
   - component: {fileID: 114346673147381282}
+  - component: {fileID: 8531494269960652284}
   m_Layer: 10
   m_Name: Enemy
   m_TagString: Untagged
@@ -355,8 +356,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SkillComponent:
     Skills: []
-  ClickRigPrefab: {fileID: 5555578093110264772, guid: 1c4235b0a6cddd240bd32a85af8d7374,
-    type: 3}
   PlayerPositionPrefab: {fileID: 1087601212156208362, guid: b9077c2c293c42c44ac427cd0092af35,
     type: 3}
   player_high: 0.6
@@ -440,6 +439,23 @@ MonoBehaviour:
   player: {fileID: 0}
   moveSpeed: 1
   limitLength: 40
+--- !u!114 &8531494269960652284
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1265055097939166}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eeca59439fec3a1408a28ec19a250aca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_hpSlider: {fileID: 114793534396052732}
+  m_maxHP: 1500
+  m_dieAnimationPrefab: {fileID: 1150939096144506, guid: 96a02e7cde142854ba3f556c4cf30a41,
+    type: 3}
+  m_dieAnimationTimeLength: 2
 --- !u!1 &1335420415420442
 GameObject:
   m_ObjectHideFlags: 0

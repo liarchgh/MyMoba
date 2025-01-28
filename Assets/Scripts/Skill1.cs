@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class Skill1 : MonoBehaviour {
 	public float rotate_speed = 4000f;
-	public float skill1_attack = 500f;
+	public uint Damage = 500;
 
 	// Use this for initialization
 	void Start () {
@@ -22,7 +22,6 @@ public class Skill1 : MonoBehaviour {
 	}
 
 	void OnTriggerEnter(Collider obj) {
-		//Debug.Log("ENter");
-		obj.gameObject.GetComponentInChildren<Slider>().value -= skill1_attack;
+		obj.gameObject.GetComponentInChildren<HPComponent>().RemoveHP(Damage);
 	}
 }
