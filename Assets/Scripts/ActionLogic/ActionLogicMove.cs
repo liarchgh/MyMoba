@@ -50,14 +50,7 @@ public class ActionLogicMove: ActionLogicWithParamBase<ActionMoveParam>
 		new List<ActionLogicGameObjectEntity>();
 	public float Speed = 1;
 	public GameObject ClickRigPrefab;
-	public bool __moving = false;
-	private bool _moving {
-		get { return __moving; }
-		set { __moving = value;
-		Debug.Log($"ls_db set __moving:{__moving}");
-		; }
-
-	}
+	private bool _moving = false;
 	private float dis_last;
 	public override bool FixedUpdate(List<object> value)
 	{
@@ -68,7 +61,6 @@ public class ActionLogicMove: ActionLogicWithParamBase<ActionMoveParam>
 		//用和目的地距离变远作为终止条件 但是在碰撞后被弹回会停止
 		targetPos.y = rb.position.y;
 		var dis_now = Vector3.Distance(targetPos, rb.position);
-		Debug.Log($"ls_db dis_last:{dis_last}, dis_now:{dis_now}");
 		if ((dis_now <= dis_last || dis_last < 0) && dis_now > 0.02f) {
 			dis_last = dis_now;
 		} else {
