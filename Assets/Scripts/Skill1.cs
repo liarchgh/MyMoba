@@ -22,6 +22,7 @@ public class Skill1 : MonoBehaviour {
 	}
 
 	void OnTriggerEnter(Collider obj) {
-		obj.gameObject.GetComponentInChildren<HPComponent>().RemoveHP(Damage);
+		if(obj.gameObject.TryGetComponent<HPComponent>(out var hpc))
+			hpc.RemoveHP(Damage);
 	}
 }

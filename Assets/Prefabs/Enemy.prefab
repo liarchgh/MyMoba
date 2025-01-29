@@ -221,7 +221,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1036672779449272}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6f1c23611d73d6d418b3e2125cc94726, type: 3}
+  m_Script: {fileID: 11500000, guid: 1ce188056275e73498b411b25cc9bbec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   rotate_speed: 200
@@ -602,10 +602,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1335420415420442}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c489f3f3f68d11a45a788a34681d1286, type: 3}
+  m_Script: {fileID: 11500000, guid: 1ce188056275e73498b411b25cc9bbec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotate_speed: 100
+  rotate_speed: 400
   skill1_attack: 500
 --- !u!1 &1335579491839664
 GameObject:
@@ -1117,10 +1117,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1778563378111422}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6f2535d120a767b4084ff0d15c7679be, type: 3}
+  m_Script: {fileID: 11500000, guid: 1ce188056275e73498b411b25cc9bbec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotate_speed: 300
+  rotate_speed: 500
   skill1_attack: 500
 --- !u!1 &1863055872171500
 GameObject:
@@ -1393,8 +1393,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 1992403716279206}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f55d49cc877b644886e55868f045f81, type: 3}
+  m_Script: {fileID: 11500000, guid: 1ce188056275e73498b411b25cc9bbec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotate_speed: 450
+  rotate_speed: 300
   skill1_attack: 500

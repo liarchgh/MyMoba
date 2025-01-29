@@ -234,6 +234,7 @@ GameObject:
   - component: {fileID: 359730876}
   - component: {fileID: 359730878}
   - component: {fileID: 359730879}
+  - component: {fileID: 359730880}
   m_Layer: 0
   m_Name: BattleManager
   m_TagString: Untagged
@@ -282,7 +283,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemy: {fileID: 1265055097939166, guid: 0cbbf4a8d296e994cbebe9895dddf6d7, type: 3}
   rangeToCreateEnemies: {x: 40, y: 60}
-  player: {fileID: 0}
   numberOfEnemies: 5
   dieAnimation: {fileID: 1150939096144506, guid: 96a02e7cde142854ba3f556c4cf30a41,
     type: 3}
@@ -302,6 +302,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 3326835224430214212, guid: 61cdd23297229114b83c4430132ba5cd, type: 3}
+--- !u!114 &359730880
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 359730875}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fa2b8d6e5d76f349ba9f6448735ea3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &383671647
 GameObject:
   m_ObjectHideFlags: 0
@@ -867,7 +879,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50119c5fe126b0a47b8cd2b2ee7690c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
   lock_cam: 1
   speed: 40
   cam_high_max: 20
