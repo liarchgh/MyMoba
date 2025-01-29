@@ -70,6 +70,7 @@
     <Compile Include="Assets\Scripts\ActionLogic\ActionParam\ActionParamSingleParamMousePosition.cs" />
     <Compile Include="Assets\Scripts\EnemySkill1.cs" />
     <Compile Include="Assets\Scripts\Net\NetUtil.cs" />
+    <Compile Include="Assets\Scripts\LogicTrigger\LogicTriggerDownKey.cs" />
     <Compile Include="Assets\Scripts\ActionLogic\ActionParam\ActionParamBase.cs" />
     <Compile Include="Assets\Scripts\EnemyAI.cs" />
     <Compile Include="Assets\Scripts\BattleManger.cs" />

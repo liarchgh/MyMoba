@@ -614,13 +614,13 @@ MonoBehaviour:
       Skill:
         rid: 4169396081048158264
       Trigger:
-        rid: 4169396081048158265
+        rid: 3606239379817234486
     - Name: w
       RunType: 2
       Skill:
         rid: 4169396081048158266
       Trigger:
-        rid: 4169396081048158267
+        rid: 3606239379817234487
   PlayerPositionPrefab: {fileID: 1087601212156208362, guid: b9077c2c293c42c44ac427cd0092af35,
     type: 3}
   player_high: 1.5
@@ -631,6 +631,14 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
+    - rid: 3606239379817234486
+      type: {class: LogicTriggerDownKey, ns: , asm: Assembly-CSharp}
+      data:
+        Key: 113
+    - rid: 3606239379817234487
+      type: {class: LogicTriggerDownKey, ns: , asm: Assembly-CSharp}
+      data:
+        Key: 119
     - rid: 4169396081048158262
       type: {class: ActionLogicMove, ns: , asm: Assembly-CSharp}
       data:
@@ -642,7 +650,6 @@ MonoBehaviour:
         Speed: 8
         ClickRigPrefab: {fileID: 5555578093110264772, guid: 1c4235b0a6cddd240bd32a85af8d7374,
           type: 3}
-        __moving: 0
     - rid: 4169396081048158263
       type: {class: LogicTriggerPressKey, ns: , asm: Assembly-CSharp}
       data:
@@ -658,10 +665,6 @@ MonoBehaviour:
         Prefab: {fileID: 1651409445499172, guid: 1bbe409e9c7712b49a1dae81c8cbe9be,
           type: 3}
         Speed: 50
-    - rid: 4169396081048158265
-      type: {class: LogicTriggerPressKey, ns: , asm: Assembly-CSharp}
-      data:
-        Key: 113
     - rid: 4169396081048158266
       type: {class: ActionLogicContains, ns: , asm: Assembly-CSharp}
       data:
@@ -674,10 +677,6 @@ MonoBehaviour:
           serializedVersion: 2
           m_Bits: 256
         ContainTimeLength: 4
-    - rid: 4169396081048158267
-      type: {class: LogicTriggerPressKey, ns: , asm: Assembly-CSharp}
-      data:
-        Key: 119
     - rid: 4169396081048158268
       type: {class: ActionParamSingleParamMainPlayer, ns: , asm: Assembly-CSharp}
       data: 
