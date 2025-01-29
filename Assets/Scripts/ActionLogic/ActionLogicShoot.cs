@@ -33,47 +33,56 @@ public class ActionShootParam: ActionParamBase
 		return (Vector3)((List<object>)value)[1];
 	}
 }
+public class ActionShootStatus: ActionStatusBase
+{
+	public List<ActionLogicGameObjectEntity> _entities = new List<ActionLogicGameObjectEntity>();
+	public GameObject _go => _entities[0].GO;
+	public Rigidbody _rb => _go.GetComponent<Rigidbody>();
+	public float _lastDis;
+}
 [Serializable]
-public class ActionLogicShoot: ActionLogicWithParamBase<ActionShootParam>
+public class ActionLogicShoot: ActionLogicWithParamBase<ActionShootParam, ActionShootStatus>
 {
 	public GameObject Prefab;
 	public float Speed = 50;
-	private List<ActionLogicGameObjectEntity> _entities = new List<ActionLogicGameObjectEntity>();
-	private GameObject _go => _entities[0].GO;
-	private Rigidbody _rb => _go.GetComponent<Rigidbody>();
 	private float _lastDis;
-	public override bool FixedUpdate(List<object> value)
+	public override bool FixedUpdateAction(List<object> value, ActionShootStatus shootStatus)
 	{
-		float dis_now = GetDis(value);
-		if (dis_now <= _lastDis || _lastDis < 0) {
-			_lastDis = dis_now;
+		float dis_now = GetDis(value, shootStatus);
+		if (dis_now <= shootStatus._lastDis || shootStatus._lastDis < 0) {
+			shootStatus._lastDis = dis_now;
 			return false;
 		} else {
-			Stop(value);
+			StopAction(value, shootStatus);
 			return true;
 		}
 	}
-	public override void DoLogic(List<object> value)
+	public override void DoActionLogic(List<object> value, out ActionShootStatus shootStatus)
 	{
-		base.DoLogic(value);
+		base.DoActionLogic(value, out shootStatus);
 		var go = GameObject.Instantiate(Prefab);
 		var e = new ActionLogicGameObjectEntity(){GO = go};
-		_entities.Add(e);
+		shootStatus._entities.Add(e);
 		var targetPos = ActionParam.GetEndPosition(value);
-		_go.transform.position = ActionParam.GetStartPosition(value);
-		targetPos.y = _go.transform.position.y;
-		_rb.linearVelocity = (targetPos - _go.transform.position).normalized * Speed;
-		_lastDis = -1;
+		shootStatus._go.transform.position = ActionParam.GetStartPosition(value);
+		targetPos.y = shootStatus._go.transform.position.y;
+		shootStatus._rb.linearVelocity = (targetPos - shootStatus._go.transform.position).normalized * Speed;
+		shootStatus._lastDis = -1;
 	}
-	public override void Stop(List<object> value)
+	public override void StopAction(List<object> value, ActionShootStatus shootStatus)
 	{
-		_entities.ForEach(e => e.Clear());
-		_entities.Clear();
+		shootStatus._entities.ForEach(e => e.Clear());
+		shootStatus._entities.Clear();
 	}
-	private float GetDis(List<object> value)
+	private float GetDis(List<object> value, ActionShootStatus shootStatus)
 	{
 		var targetPos = ActionParam.GetEndPosition(value);
-		targetPos.y = _go.transform.position.y;
-		return Mathf.Abs(Vector3.Distance(targetPos, _go.transform.position));
+		targetPos.y = shootStatus._go.transform.position.y;
+		return Mathf.Abs(Vector3.Distance(targetPos, shootStatus._go.transform.position));
 	}
+
+    protected override ActionShootStatus CreateStatus()
+    {
+		return new ActionShootStatus();
+    }
 }

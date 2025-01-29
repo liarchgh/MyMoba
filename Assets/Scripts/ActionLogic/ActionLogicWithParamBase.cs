@@ -1,21 +1,57 @@
 using System;
 using System.Collections.Generic;
+using NUnit.Framework.Constraints;
 using UnityEngine;
 
 [Serializable]
-public abstract class ActionLogicWithParamBase<T>: ActionLogicBase where T : ActionParamBase
+public abstract class ActionLogicWithParamBase<T1, T2>: ActionLogicBase
+	where T1 : ActionParamBase
+	where T2 : ActionStatusBase
 {
-	public T ActionParam;
+	public T1 ActionParam;
 	public override bool PreCheckLogic(out List<object> value)
 	{
 		return ActionParam.TryGenParam(out value);
 	}
-	public override void DoLogic(List<object> value)
+	public override void DoLogic(List<object> value, out ActionStatusBase status)
 	{
-		CacheTime();
+		DoActionLogic(value, out var t2);
+		status = t2;
 	}
-	protected void CacheTime()
+	public virtual void DoActionLogic(List<object> value, out T2 actionStatus)
 	{
-		ActionParam.DoTime = TimeUtil.GetTime();
+		actionStatus = CreateStatus();
+		actionStatus.DoTime = TimeUtil.GetTime();
+	}
+	protected abstract T2 CreateStatus();
+	public override bool FixedUpdate(List<object> value, ActionStatusBase status)
+	{
+		if(status is T2 t2)
+		{
+			return FixedUpdateAction(value, t2);
+		}
+		else
+		{
+			throw new TypeAccessException($"{status.GetType()} is not {typeof(T2)} or its subclass.");
+		}
+	}
+	public virtual bool FixedUpdateAction(List<object> value, T2 actionStatus)
+	{
+		throw new NotImplementedException();
+	}
+	public override void Stop(List<object> value, ActionStatusBase status)
+	{
+		if(status is T2 t2)
+		{
+			StopAction(value, t2);
+		}
+		else
+		{
+			throw new TypeAccessException($"{status.GetType()} is not {typeof(T2)} or its subclass.");
+		}
+	}
+	public virtual void StopAction(List<object> value, T2 actionStatus)
+	{
+		StopAction(value, actionStatus);
 	}
 }

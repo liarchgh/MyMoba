@@ -19,30 +19,39 @@ public class ActionContainsParam : ActionParamBase
 		return (Vector3)value.First();
 	}
 }
+public class ActionContainsStatus: ActionStatusBase
+{
+	public float ContainTimeLength = 4.0f;
+	public List<ActionLogicGameObjectEntity> _entities = new List<ActionLogicGameObjectEntity>();
+	public GameObject Go => _entities[0].GO;
+}
 [Serializable]
-public class ActionLogicContains: ActionLogicWithParamBase<ActionContainsParam>
+public class ActionLogicContains: ActionLogicWithParamBase<ActionContainsParam, ActionContainsStatus>
 {
 	public GameObject Prefab;
 	public LayerMask TerrainLayer;
 	public float ContainTimeLength = 4.0f;
-	private List<ActionLogicGameObjectEntity> _entities = new List<ActionLogicGameObjectEntity>();
-	private GameObject Go => _entities[0].GO;
-	public override bool FixedUpdate(List<object> value)
+	public override bool FixedUpdateAction(List<object> value, ActionContainsStatus containsStatus)
 	{
-		var done = TimeUtil.GetTime() > ActionParam.DoTime + ContainTimeLength;
-		if (done) Stop(value);
+		var done = TimeUtil.GetTime() > containsStatus.DoTime + ContainTimeLength;
+		if (done) StopAction(value, containsStatus);
 		return done;
 	}
-	public override void DoLogic(List<object> value)
+	public override void DoActionLogic(List<object> value, out ActionContainsStatus containsStatus)
 	{
-		base.DoLogic(value);
+		base.DoActionLogic(value, out containsStatus);
 		var go = GameObject.Instantiate(Prefab);
-		_entities.Add(new ActionLogicGameObjectEntity(){GO = go});
-		Go.transform.position = ActionParam.GetPosition(value);
+		containsStatus._entities.Add(new ActionLogicGameObjectEntity(){GO = go});
+		containsStatus.Go.transform.position = ActionParam.GetPosition(value);
 	}
-	public override void Stop(List<object> value)
+	public override void StopAction(List<object> value, ActionContainsStatus containsStatus)
 	{
-		_entities.ForEach(e => e.Clear());
-		_entities.Clear();
+		containsStatus._entities.ForEach(e => e.Clear());
+		containsStatus._entities.Clear();
 	}
+
+    protected override ActionContainsStatus CreateStatus()
+    {
+        return new ActionContainsStatus();
+    }
 }

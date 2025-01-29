@@ -43,51 +43,61 @@ public class ActionDieParam: ActionParamBase
 		return (Vector3)((List<object>)value)[1];
 	}
 }
-[Serializable]
-public class ActionLogicDie: ActionLogicWithParamBase<ActionDieParam>
+public class ActionDieStatus: ActionStatusBase
 {
-	private List<ActionLogicGameObjectEntity> _entities =
+	public List<ActionLogicGameObjectEntity> _entities =
 		new List<ActionLogicGameObjectEntity>();
 	public float Speed = 1;
 	public GameObject ClickRigPrefab;
-	private bool _moving = false;
-	private float dis_last;
-	public override bool FixedUpdate(List<object> value)
+	public bool _moving = false;
+	public float dis_last;
+}
+[Serializable]
+public class ActionLogicDie: ActionLogicWithParamBase<ActionDieParam, ActionDieStatus>
+{
+	public float Speed = 1;
+	public GameObject ClickRigPrefab;
+	public override bool FixedUpdateAction(List<object> value, ActionDieStatus dieStatus)
 	{
-		if(!_moving) return true;
+		if(!dieStatus._moving) return true;
 
 		var rb = ActionParam.GetActionRigidbody(value);
 		var pos = ActionParam.GetTargetPosition(value);
 		//用和目的地距离变远作为终止条件 但是在碰撞后被弹回会停止
 		pos.y = rb.position.y;
 		float dis_now = Mathf.Abs(Vector3.Distance(pos, rb.position));
-		if ((dis_now <= dis_last || dis_last < 0) && dis_now > 0.2f) {
-			dis_last = dis_now;
+		if ((dis_now <= dieStatus.dis_last || dieStatus.dis_last < 0) && dis_now > 0.2f) {
+			dieStatus.dis_last = dis_now;
 		} else {
 			rb.linearVelocity = Vector3.zero;
-			Stop(value);
-			_moving = false;
+			StopAction(value, dieStatus);
+			dieStatus._moving = false;
 		}
-		return !_moving;
+		return !dieStatus._moving;
 	}
-	public override void DoLogic(List<object> value)
+	public override void DoActionLogic(List<object> value, out ActionDieStatus dieStatus)
 	{
-		base.DoLogic(value);
+		base.DoActionLogic(value, out dieStatus);
 		var rb = ActionParam.GetActionRigidbody(value);
 		var pos = ActionParam.GetTargetPosition(value);
 		var rig = GameObject.Instantiate(ClickRigPrefab);
 		rig.transform.position = pos;
-		_entities.Add(new ActionLogicGameObjectEntity(){GO = rig});
+		dieStatus._entities.Add(new ActionLogicGameObjectEntity(){GO = rig});
 
 		pos.y = rb.position.y;
 		rb.linearVelocity = (pos - rb.position).normalized * Speed;
-		dis_last = -1;
-		_moving = true;
+		dieStatus.dis_last = -1;
+		dieStatus._moving = true;
 	}
 
-	public override void Stop(List<object> value)
+	public override void StopAction(List<object> value, ActionDieStatus dieStatus)
 	{
-		_entities.ForEach(e => e.Clear());
-		_entities.Clear();
+		dieStatus._entities.ForEach(e => e.Clear());
+		dieStatus._entities.Clear();
 	}
+
+    protected override ActionDieStatus CreateStatus()
+    {
+        return new ActionDieStatus();
+    }
 }

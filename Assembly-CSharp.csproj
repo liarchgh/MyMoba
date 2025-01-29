@@ -81,6 +81,7 @@
     <Compile Include="Assets\Scripts\ActionLogic\ActionParam\ActionParamSingleParamMainPlayer.cs" />
     <Compile Include="Assets\Scripts\ActionLogic\ActionLogicMove.cs" />
     <Compile Include="Assets\Scripts\LogicTrigger\LogicTriggerBase.cs" />
+    <Compile Include="Assets\Scripts\ActionLogic\ActionStatusBase.cs" />
     <Compile Include="Assets\Scripts\Utils\IEnumerableUtil.cs" />
     <Compile Include="Assets\Scripts\Skill1.cs" />
     <Compile Include="Assets\Scripts\ActionLogic\ActionParam\ActionParamSingleParamBase.cs" />

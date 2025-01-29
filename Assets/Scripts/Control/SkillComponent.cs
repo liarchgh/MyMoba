@@ -43,7 +43,7 @@ public class SkillComponent
 					case SkillRunType.OnlyOne:
 						_runningSkills
 							.Where(x => x.SkillIndex == sd.SkillIndex)
-							.ForEach(x => Skills[x.SkillIndex].Skill.Stop(x.Param))
+							.ForEach(x => Skills[x.SkillIndex].Skill.Stop(x.Param, x.ActionStatus))
 						;
 						_runningSkills =
 							_runningSkills
@@ -53,7 +53,7 @@ public class SkillComponent
 					break;
 				}
 				var param = sd.Param;
-				x.Skill.DoLogic(param);
+				x.Skill.DoLogic(param, out sd.ActionStatus);
 				// FixedUpdate先跑一次的话虽然可以优化表现，
 				// 但是Move跑这里的时候还是上一帧的速度，和上边DoLogic不一样，
 				// 会导致再下一帧会向反向走，会认为已经跨过目标点了
@@ -69,7 +69,7 @@ public class SkillComponent
 	public void CommonFixedUpdate()
 	{
 		_runningSkills = _runningSkills
-			.Where(x => !Skills[x.SkillIndex].Skill.FixedUpdate(x.Param))
+			.Where(x => !Skills[x.SkillIndex].Skill.FixedUpdate(x.Param, x.ActionStatus))
 			.ToList();
 	}
 }
@@ -77,10 +77,12 @@ public struct SkillRunData
 {
 	public int SkillIndex;
 	public List<object> Param;
+	public ActionStatusBase ActionStatus;
 	public SkillRunData(int skillID, List<object> actionParams)
 	{
 		SkillIndex = skillID;
 		Param = actionParams;
+		ActionStatus = null;
 	}
 }
 public enum SkillRunType
