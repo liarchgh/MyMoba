@@ -5,21 +5,21 @@ public static class MathUtil
 	{
 		return (a < b) ? a : b;
 	}
-    public static uint Max(uint a, uint b)
-    {
-        return (a > b) ? a : b;
-    }
-    public static uint Clamp(uint value, uint min, uint max)
-    {
-        if (value < min)
-        {
-            value = min;
-        }
-        else if (value > max)
-        {
-            value = max;
-        }
+	public static uint Max(uint a, uint b)
+	{
+		return (a > b) ? a : b;
+	}
+	public static uint Clamp(uint value, uint min, uint max)
+	{
+		if (value < min)
+		{
+			value = min;
+		}
+		else if (value > max)
+		{
+			value = max;
+		}
 
-        return value;
-    }
+		return value;
+	}
 }

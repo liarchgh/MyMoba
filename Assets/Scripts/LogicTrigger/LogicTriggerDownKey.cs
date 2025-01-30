@@ -4,9 +4,9 @@ using UnityEngine;
 [Serializable]
 public class LogicTriggerDownKey: LogicTriggerBase
 {
-    public KeyCode Key;
-    public override bool CheckSkillTrigger()
-    {
-        return Input.GetKeyDown(Key);
-    }
+	public KeyCode Key;
+	public override bool CheckSkillTrigger()
+	{
+		return Input.GetKeyDown(Key);
+	}
 }

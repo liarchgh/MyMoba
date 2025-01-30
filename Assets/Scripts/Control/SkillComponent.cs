@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
+using System.Security.Cryptography.X509Certificates;
+using Action;
 using Newtonsoft.Json;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -9,6 +11,7 @@ using UnityEngine;
 [Serializable]
 public class SkillComponent
 {
+	private ActionCommonData _commonData = new ActionCommonData();
 	// 下标即为ID
 	public List<SkillConfig> Skills = new List<SkillConfig>();
 	private List<SkillRunData> _runningSkills = new List<SkillRunData>();
@@ -35,30 +38,30 @@ public class SkillComponent
 	}
 	private void HandleSkillLogic()
 	{
-		_skillRunDatas.ForEach(sd =>
+        _skillRunDatas.ForEach((Action<SkillRunData>)(sd =>
 			{
 				var x = Skills[sd.SkillIndex];
 				switch(x.RunType)
 				{
 					case SkillRunType.OnlyOne:
-						_runningSkills
-							.Where(x => x.SkillIndex == sd.SkillIndex)
-							.ForEach(x => Skills[x.SkillIndex].Skill.Stop(x.Param, x.ActionStatus))
+                        _runningSkills
+                            .Where(x => x.SkillIndex == sd.SkillIndex)
+							.ForEach((Action<SkillRunData>)(x => Skills[x.SkillIndex].Skill.Stop(x.Param, x.ActionStatus)))
 						;
-						_runningSkills =
-							_runningSkills
-							.Where(x => x.SkillIndex != sd.SkillIndex)
+                        _runningSkills =
+                            _runningSkills
+                            .Where(x => x.SkillIndex != sd.SkillIndex)
 							.ToList()
 						;
 					break;
 				}
 				var param = sd.Param;
-				x.Skill.DoLogic(param, out sd.ActionStatus);
-				// FixedUpdate先跑一次的话虽然可以优化表现，
-				// 但是Move跑这里的时候还是上一帧的速度，和上边DoLogic不一样，
-				// 会导致再下一帧会向反向走，会认为已经跨过目标点了
-				_runningSkills.Add(sd);
-			});
+				x.Skill.DoLogic(param, _commonData, out sd.ActionStatus);
+                // FixedUpdate先跑一次的话虽然可以优化表现，
+                // 但是Move跑这里的时候还是上一帧的速度，和上边DoLogic不一样，
+                // 会导致再下一帧会向反向走，会认为已经跨过目标点了
+                _runningSkills.Add(sd);
+			}));
 		_skillRunDatas.Clear();
 	}
 	public void CommonUpdate()
@@ -68,9 +71,19 @@ public class SkillComponent
 	}
 	public void CommonFixedUpdate()
 	{
-		_runningSkills = _runningSkills
-			.Where(x => !Skills[x.SkillIndex].Skill.FixedUpdate(x.Param, x.ActionStatus))
+		var ress = _runningSkills
+			.Select(x => (x, Skills[x.SkillIndex].Skill
+				.FixedUpdate(x.Param, x.ActionStatus)))
 			.ToList();
+		ress.Where(x=>x.Item2)
+			.Select(x=>x.Item1)
+			.ForEach(x=>
+				{
+					var skill = Skills[x.SkillIndex];
+					skill.Skill.Stop(x.Param, x.ActionStatus);
+				})
+			;
+		_runningSkills = ress.Where(x=>!x.Item2).Select(x=>x.Item1).ToList();
 	}
 }
 public struct SkillRunData

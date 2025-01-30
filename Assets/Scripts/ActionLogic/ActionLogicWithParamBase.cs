@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
-using NUnit.Framework.Constraints;
-using UnityEngine;
+using Action;
 
 [Serializable]
 public abstract class ActionLogicWithParamBase<T1, T2>: ActionLogicBase
@@ -13,15 +12,16 @@ public abstract class ActionLogicWithParamBase<T1, T2>: ActionLogicBase
 	{
 		return ActionParam.TryGenParam(out value);
 	}
-	public override void DoLogic(List<object> value, out ActionStatusBase status)
+	public override void DoLogic(List<object> value, ActionCommonData commonData, out ActionStatusBase status)
 	{
-		DoActionLogic(value, out var t2);
+		DoActionLogic(value, commonData, out var t2);
 		status = t2;
 	}
-	public virtual void DoActionLogic(List<object> value, out T2 actionStatus)
+	public virtual void DoActionLogic(List<object> value, ActionCommonData commonData, out T2 actionStatus)
 	{
 		actionStatus = CreateStatus();
 		actionStatus.DoTime = TimeUtil.GetTime();
+		actionStatus.CommonData = commonData;
 	}
 	protected abstract T2 CreateStatus();
 	public override bool FixedUpdate(List<object> value, ActionStatusBase status)
@@ -43,15 +43,15 @@ public abstract class ActionLogicWithParamBase<T1, T2>: ActionLogicBase
 	{
 		if(status is T2 t2)
 		{
-			StopAction(value, t2);
+			Clear(value, t2);
 		}
 		else
 		{
 			throw new TypeAccessException($"{status.GetType()} is not {typeof(T2)} or its subclass.");
 		}
 	}
-	public virtual void StopAction(List<object> value, T2 actionStatus)
+	public virtual void Clear(List<object> value, T2 actionStatus)
 	{
-		StopAction(value, actionStatus);
+		actionStatus.CommonData.RemoveData(actionStatus);
 	}
 }

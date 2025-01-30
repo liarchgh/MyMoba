@@ -1,14 +1,16 @@
 using System;
 using System.Collections.Generic;
+using Action;
 using UnityEngine;
 
 [Serializable]
 public class ActionMoveParam: ActionParamBase
 {
 	[SerializeReference]
-	public ActionParamSingleParamBase<uint> ActionTransform;
+	private ActionParamSingleParamBase<uint> ActionTransform;
 	[SerializeReference]
-	public ActionParamSingleParamBase<Vector3> TargetPosition;
+	private ActionParamSingleParamBase<Vector3> TargetPosition;
+	public ActionCommonDataType SpeedMultiFrom;
 
 	public override bool TryGenParam(out List<object> value)
 	{
