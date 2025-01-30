@@ -3,44 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [Serializable]
-public class ActionShootParam: ActionParamBase
-{
-	[SerializeReference]
-	public ActionParamSingleParamBase<Vector3> StartPositionGen;
-	[SerializeReference]
-	public ActionParamSingleParamBase<Vector3> EndPositionGen;
-
-	public override bool TryGenParam(out List<object> value)
-	{
-		if(StartPositionGen.TryGenValue(out var v0)
-			&& EndPositionGen.TryGenValue(out var v1))
-		{
-			value = new List<object>(){v0, v1};
-			return true;
-		}
-		else
-		{
-			value = default;
-			return false;
-		}
-	}
-	public Vector3 GetStartPosition(object value)
-	{
-		return (Vector3)((List<object>)value)[0];
-	}
-	public Vector3 GetEndPosition(object value)
-	{
-		return (Vector3)((List<object>)value)[1];
-	}
-}
-public class ActionShootStatus: ActionStatusBase
-{
-	public List<ActionLogicGameObjectEntity> _entities = new List<ActionLogicGameObjectEntity>();
-	public GameObject _go => _entities[0].GO;
-	public Rigidbody _rb => _go.GetComponent<Rigidbody>();
-	public float _lastDis;
-}
-[Serializable]
 public class ActionLogicShoot: ActionLogicWithParamBase<ActionShootParam, ActionShootStatus>
 {
 	public GameObject Prefab;

@@ -2,54 +2,6 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-
-public class ActionMoveEntity : EntityBase
-{
-	public GameObject GO;
-	public override void Clear()
-	{
-		GameObject.Destroy(GO);
-	}
-}
-
-[Serializable]
-public class ActionMoveParam: ActionParamBase
-{
-	[SerializeReference]
-	public ActionParamSingleParamBase<uint> ActionTransform;
-	[SerializeReference]
-	public ActionParamSingleParamBase<Vector3> TargetPosition;
-
-	public override bool TryGenParam(out List<object> value)
-	{
-		if(ActionTransform.TryGenValue(out var v0)
-			&& TargetPosition.TryGenValue(out var v1))
-		{
-			value = new List<object>(){v0, v1};
-			return true;
-		}
-		else
-		{
-			value = default;
-			return false;
-		}
-	}
-	public Rigidbody GetActionRigidbody(object value)
-	{
-		return PlayerManager.Instance.GetPlayerControl((uint)((List<object>)value)[0]).GetComponent<Rigidbody>();
-	}
-	public Vector3 GetTargetPosition(object value)
-	{
-		return (Vector3)((List<object>)value)[1];
-	}
-}
-public class ActionMoveStatus: ActionStatusBase
-{
-	public List<ActionLogicGameObjectEntity> _entities = new List<ActionLogicGameObjectEntity>();
-	public GameObject Go => _entities[0].GO;
-	public bool _moving = false;
-	public float dis_last;
-}
 [Serializable]
 public class ActionLogicMove: ActionLogicWithParamBase<ActionMoveParam, ActionMoveStatus>
 {
