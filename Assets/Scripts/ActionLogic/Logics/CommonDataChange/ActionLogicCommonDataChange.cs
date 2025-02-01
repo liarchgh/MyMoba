@@ -12,10 +12,10 @@ public class ActionLogicCommonDataChange: ActionLogicWithParamBase<
 	{
 		return TimeUtil.GetTime() > actionStatus.DoTime + ActionParam.TimeLength;
 	}
-	public override void DoActionLogic(List<object> value,
-		ActionCommonData commonData, out ActionCommonDataChangeStatus actionStatus)
+	public override void DoActionLogic(List<object> value, ActionCommonData commonData,
+		SkillComponent skillComponent, out ActionCommonDataChangeStatus actionStatus)
 	{
-		base.DoActionLogic(value, commonData, out actionStatus);
+		base.DoActionLogic(value, commonData, skillComponent, out actionStatus);
 		actionStatus.DataValue = ActionParam.DataValue;
 		commonData.AddData(ActionParam.CommonDataType, actionStatus);
 	}

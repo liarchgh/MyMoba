@@ -74,8 +74,10 @@
     <Compile Include="Assets\Scripts\ActionLogic\Logics\Shoot\ActionShootParam.cs" />
     <Compile Include="Assets\Scripts\Net\NetUtil.cs" />
     <Compile Include="Assets\Scripts\LogicTrigger\LogicTriggerDownKey.cs" />
+    <Compile Include="Assets\Scripts\ActionLogic\Logics\StopAction\ActionLogicStopAction.cs" />
     <Compile Include="Assets\Scripts\ActionLogic\Logics\CommonDataChange\ActionLogicCommonDataChange.cs" />
     <Compile Include="Assets\Scripts\ActionLogic\ActionParam\ActionParamBase.cs" />
+    <Compile Include="Assets\Scripts\ActionLogic\ActionDefine.cs" />
     <Compile Include="Assets\Scripts\EnemyAI.cs" />
     <Compile Include="Assets\Scripts\BattleManger.cs" />
     <Compile Include="Assets\Scripts\EntityBase.cs" />
@@ -84,6 +86,7 @@
     <Compile Include="Assets\Scripts\ActionLogic\Logics\Die\ActionDieStatus.cs" />
     <Compile Include="Assets\Scripts\EnemyManager.cs" />
     <Compile Include="Assets\Scripts\ActionLogic\Logics\Move\ActionMoveStatus.cs" />
+    <Compile Include="Assets\Scripts\ActionLogic\Logics\StopAction\ActionStopActionParam.cs" />
     <Compile Include="Assets\Scripts\ActionLogic\Logics\Shoot\ActionShootStatus.cs" />
     <Compile Include="Assets\Scripts\ActionLogic\Logics\Contains\ActionContainsParam.cs" />
     <Compile Include="Assets\Scripts\MarkPanel.cs" />
@@ -99,6 +102,7 @@
     <Compile Include="Assets\Scripts\Skill2.cs" />
     <Compile Include="Assets\Scripts\MainCameraMove.cs" />
     <Compile Include="Assets\Scripts\ActionLogic\Logics\Shoot\ActionLogicShoot.cs" />
+    <Compile Include="Assets\Scripts\ActionLogic\Logics\StopAction\ActionStopActionStatus.cs" />
     <Compile Include="Assets\Scripts\Control\SkillComponent.cs" />
     <Compile Include="Assets\Scripts\PlayerManager.cs" />
     <Compile Include="Assets\Log.cs" />

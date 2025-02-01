@@ -26,9 +26,10 @@ public class ActionLogicDie: ActionLogicWithParamBase<ActionDieParam, ActionDieS
 		}
 		return !actionStatus._moving;
 	}
-	public override void DoActionLogic(List<object> value, ActionCommonData commonData, out ActionDieStatus actionStatus)
+	public override void DoActionLogic(List<object> value, ActionCommonData commonData,
+		SkillComponent skillComponent, out ActionDieStatus actionStatus)
 	{
-		base.DoActionLogic(value, commonData, out actionStatus);
+		base.DoActionLogic(value, commonData, skillComponent, out actionStatus);
 		var rb = ActionParam.GetActionRigidbody(value);
 		var pos = ActionParam.GetTargetPosition(value);
 		var rig = GameObject.Instantiate(ClickRigPrefab);

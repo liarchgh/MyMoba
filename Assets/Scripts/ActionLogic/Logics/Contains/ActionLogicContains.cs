@@ -15,9 +15,10 @@ public class ActionLogicContains: ActionLogicWithParamBase<ActionContainsParam, 
 		if (done) Clear(value, actionStatus);
 		return done;
 	}
-	public override void DoActionLogic(List<object> value, ActionCommonData commonData, out ActionContainsStatus actionStatus)
+	public override void DoActionLogic(List<object> value, ActionCommonData commonData,
+		SkillComponent skillComponent, out ActionContainsStatus actionStatus)
 	{
-		base.DoActionLogic(value, commonData, out actionStatus);
+		base.DoActionLogic(value, commonData, skillComponent, out actionStatus);
 		var go = GameObject.Instantiate(Prefab);
 		actionStatus._entities.Add(new ActionLogicGameObjectEntity(){GO = go});
 		actionStatus.Go.transform.position = ActionParam.GetPosition(value);

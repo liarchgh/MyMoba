@@ -20,9 +20,10 @@ public class ActionLogicShoot: ActionLogicWithParamBase<ActionShootParam, Action
 			return true;
 		}
 	}
-	public override void DoActionLogic(List<object> value, ActionCommonData commonData, out ActionShootStatus actionStatus)
+	public override void DoActionLogic(List<object> value, ActionCommonData commonData,
+		SkillComponent skillComponent, out ActionShootStatus actionStatus)
 	{
-		base.DoActionLogic(value, commonData, out actionStatus);
+		base.DoActionLogic(value, commonData, skillComponent, out actionStatus);
 		var go = GameObject.Instantiate(Prefab);
 		var e = new ActionLogicGameObjectEntity(){GO = go};
 		actionStatus._entities.Add(e);

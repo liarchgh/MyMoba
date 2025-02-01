@@ -12,16 +12,18 @@ public abstract class ActionLogicWithParamBase<T1, T2>: ActionLogicBase
 	{
 		return ActionParam.TryGenParam(out value);
 	}
-	public override void DoLogic(List<object> value, ActionCommonData commonData, out ActionStatusBase status)
+	public override void DoLogic(List<object> value, ActionCommonData commonData,
+		SkillComponent skillComponent, out ActionStatusBase status)
 	{
-		DoActionLogic(value, commonData, out var t2);
+		DoActionLogic(value, commonData, skillComponent, out var t2);
 		status = t2;
 	}
-	public virtual void DoActionLogic(List<object> value, ActionCommonData commonData, out T2 actionStatus)
+	public virtual void DoActionLogic(List<object> value, ActionCommonData commonData, SkillComponent skillComponent, out T2 actionStatus)
 	{
 		actionStatus = CreateStatus();
 		actionStatus.DoTime = TimeUtil.GetTime();
 		actionStatus.CommonData = commonData;
+		actionStatus.SkillComponent = skillComponent;
 	}
 	protected abstract T2 CreateStatus();
 	public override bool FixedUpdate(List<object> value, ActionStatusBase status)

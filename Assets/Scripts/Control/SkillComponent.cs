@@ -56,7 +56,7 @@ public class SkillComponent
 					break;
 				}
 				var param = sd.Param;
-				x.Skill.DoLogic(param, _commonData, out sd.ActionStatus);
+				x.Skill.DoLogic(param, _commonData, this, out sd.ActionStatus);
                 // FixedUpdate先跑一次的话虽然可以优化表现，
                 // 但是Move跑这里的时候还是上一帧的速度，和上边DoLogic不一样，
                 // 会导致再下一帧会向反向走，会认为已经跨过目标点了
@@ -71,9 +71,14 @@ public class SkillComponent
 	}
 	public void CommonFixedUpdate()
 	{
+		StopActionsBy(x=>Skills[x.SkillIndex].Skill
+				.FixedUpdate(x.Param, x.ActionStatus));
+	}
+
+	public void StopActionsBy(Func<SkillRunData, bool> needToStop)
+	{
 		var ress = _runningSkills
-			.Select(x => (x, Skills[x.SkillIndex].Skill
-				.FixedUpdate(x.Param, x.ActionStatus)))
+			.Select(x => (x, needToStop(x)))
 			.ToList();
 		ress.Where(x=>x.Item2)
 			.Select(x=>x.Item1)

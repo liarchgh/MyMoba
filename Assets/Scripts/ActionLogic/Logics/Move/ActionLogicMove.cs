@@ -24,9 +24,10 @@ public class ActionLogicMove: ActionLogicWithParamBase<ActionMoveParam, ActionMo
 		}
 		return !actionStatus._moving;
 	}
-	public override void DoActionLogic(List<object> value, ActionCommonData commonData, out ActionMoveStatus actionStatus)
+	public override void DoActionLogic(List<object> value, ActionCommonData commonData,
+		SkillComponent skillComponent, out ActionMoveStatus actionStatus)
 	{
-		base.DoActionLogic(value, commonData, out actionStatus);
+		base.DoActionLogic(value, commonData, skillComponent, out actionStatus);
 		var rb = ActionParam.GetActionRigidbody(value);
 		var pos = ActionParam.GetTargetPosition(value);
 		var rig = GameObject.Instantiate(ClickRigPrefab);
