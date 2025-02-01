@@ -37,14 +37,6 @@ public class PlayerControl : MonoBehaviour, ICommonManger {
 	}
 
 	public void CommonFixedUpdate() {
-		//摁下S键player停止活动
-		if (Input.GetKeyDown(KeyCode.S)) {
-			// set_player_state(state_static);
-		}
-
-		if (Input.GetKeyDown(KeyCode.X)) {
-			Speed = 8;
-		}
 		if (Input.GetKeyDown(KeyCode.R)) {
 			Ray target_ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 			RaycastHit target_hit;
