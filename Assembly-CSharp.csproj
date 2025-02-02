@@ -67,8 +67,8 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\ActionLogic\Logics\Die\ActionDieParam.cs" />
     <Compile Include="Assets\Scripts\ActionLogicGameObjectEntity.cs" />
-    <Compile Include="Assets\Scripts\Die.cs" />
     <Compile Include="Assets\Scripts\ActionLogic\ActionParam\ActionParamSingleParamMousePosition.cs" />
+    <Compile Include="Assets\Scripts\Actor\ActorEnemy.cs" />
     <Compile Include="Assets\Scripts\EnemySkill1.cs" />
     <Compile Include="Assets\Scripts\ActionLogic\Logics\Die\ActionLogicDie.cs" />
     <Compile Include="Assets\Scripts\ActionLogic\Logics\Teleport\ActionLogicTeleport.cs" />

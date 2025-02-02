@@ -35,4 +35,8 @@ public class PlayerControl : MonoBehaviour, ICommonManger {
 	public void CommonFixedUpdate() {
 		SkillComponent.CommonFixedUpdate();
 	}
+	void OnDestroy()
+	{
+		GameObject.Destroy(player_position);
+	}
 }
