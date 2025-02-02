@@ -155,7 +155,7 @@ MonoBehaviour:
   m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 7991
 --- !u!114 &128919977
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -298,10 +298,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 359730875}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cfa0aea9a1b121d4fad31e79ab45f0b5, type: 3}
+  m_Script: {fileID: 11500000, guid: a48307f373a06b64c85c2dbc083f9e3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Player: {fileID: 3326835224430214212, guid: 61cdd23297229114b83c4430132ba5cd, type: 3}
 --- !u!114 &359730880
 MonoBehaviour:
   m_ObjectHideFlags: 0

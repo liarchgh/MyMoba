@@ -13,6 +13,7 @@ public class HPComponent: MonoBehaviour
 	[SerializeField]
 	private float m_dieAnimationTimeLength;
 	public uint HPValue { get; private set; }
+	public Action<HPComponent> OnDie;
 	void Awake() {
 		HPValue = m_maxHP;
 	}
@@ -29,7 +30,7 @@ public class HPComponent: MonoBehaviour
 		if(HPValue <= 0){
 			EffectManager.Instance.AddEffect(m_dieAnimationPrefab, null, transform.position,
 				Quaternion.identity, TimeUtil.GetTime(), m_dieAnimationTimeLength);
-			GameObject.Destroy(this.gameObject);
+			OnDie(this);
 		}
 	}
 	private void SyncValueToSlider()

@@ -26,7 +26,8 @@ public class ActionDieParam: ActionParamBase
 	}
 	public Rigidbody GetActionRigidbody(object value)
 	{
-		return PlayerManager.Instance.GetPlayerControl((uint)((List<object>)value)[0]).GetComponent<Rigidbody>();
+		var actor = ActorManager.Instance.GetActor((uint)((List<object>)value)[0]) as ActorPlayer;
+		return actor.PlayerControl.GetComponent<Rigidbody>();
 	}
 	public Vector3 GetTargetPosition(object value)
 	{

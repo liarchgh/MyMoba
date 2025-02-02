@@ -239,7 +239,6 @@ GameObject:
   - component: {fileID: 65524821680178240}
   - component: {fileID: 23301063351553550}
   - component: {fileID: 114292349727829676}
-  - component: {fileID: 114152514326245840}
   - component: {fileID: 114829594577104414}
   - component: {fileID: 54564146121806026}
   - component: {fileID: 114346673147381282}
@@ -366,21 +365,6 @@ MonoBehaviour:
   references:
     version: 2
     RefIds: []
---- !u!114 &114152514326245840
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1265055097939166}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c84523d1f37597140b7ea54c67a017a1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hp: {fileID: 114793534396052732}
-  dieAnimation: {fileID: 1150939096144506, guid: 96a02e7cde142854ba3f556c4cf30a41,
-    type: 3}
 --- !u!114 &114829594577104414
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -436,7 +420,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5976cdc8f6b3e3148b31c7314f40acc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
   moveSpeed: 1
   limitLength: 40
 --- !u!114 &8531494269960652284
@@ -455,7 +438,7 @@ MonoBehaviour:
   m_maxHP: 1500
   m_dieAnimationPrefab: {fileID: 1150939096144506, guid: 96a02e7cde142854ba3f556c4cf30a41,
     type: 3}
-  m_dieAnimationTimeLength: 2
+  m_dieAnimationTimeLength: 5
 --- !u!1 &1335420415420442
 GameObject:
   m_ObjectHideFlags: 0

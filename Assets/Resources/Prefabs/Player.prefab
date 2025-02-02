@@ -488,7 +488,6 @@ GameObject:
   - component: {fileID: 5409074931668988614}
   - component: {fileID: 6277032170253200156}
   - component: {fileID: 2548787909598938166}
-  - component: {fileID: 3683956759427431060}
   - component: {fileID: 9124969368105112014}
   m_Layer: 11
   m_Name: Player
@@ -788,21 +787,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!114 &3683956759427431060
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3326835224430214212}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c84523d1f37597140b7ea54c67a017a1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hp: {fileID: 1136476394922326255}
-  dieAnimation: {fileID: 1150939096144506, guid: 96a02e7cde142854ba3f556c4cf30a41,
-    type: 3}
 --- !u!114 &9124969368105112014
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -817,7 +801,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_hpSlider: {fileID: 1136476394922326255}
   m_maxHP: 2000
-  m_dieAnimationPrefab: {fileID: 0}
+  m_dieAnimationPrefab: {fileID: 1150939096144506, guid: 96a02e7cde142854ba3f556c4cf30a41,
+    type: 3}
   m_dieAnimationTimeLength: 0
 --- !u!1 &6055619252548992153
 GameObject:

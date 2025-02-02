@@ -1,9 +1,7 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
 
 [RequireComponent(typeof(HPComponent))]
 public class PlayerControl : MonoBehaviour, ICommonManger {
-	public uint ID { get; set; }
 	[SerializeField]
 	public SkillComponent SkillComponent = new SkillComponent();
 	[SerializeField]
@@ -36,5 +34,9 @@ public class PlayerControl : MonoBehaviour, ICommonManger {
 
 	public void CommonFixedUpdate() {
 		SkillComponent.CommonFixedUpdate();
+	}
+	void OnDestroy()
+	{
+		GameObject.Destroy(player_position);
 	}
 }

@@ -58,7 +58,7 @@ public class MainCameraMove : MonoBehaviour {
 			transform.position = cam_set_high + target_hit.point;
 		}
 	}
-	public GameObject GetTarget()
+	private GameObject GetTarget()
 	{
 		return BattleManger.Instance.MainPlayer.gameObject;
 	}
