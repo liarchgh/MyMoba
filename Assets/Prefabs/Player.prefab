@@ -633,6 +633,12 @@ MonoBehaviour:
         rid: 3606239392234471480
       Trigger:
         rid: 2002660419303374902
+    - Name: r
+      RunType: 1
+      Skill:
+        rid: 2002660419303374903
+      Trigger:
+        rid: 2002660419303374906
   PlayerPositionPrefab: {fileID: 1087601212156208362, guid: b9077c2c293c42c44ac427cd0092af35,
     type: 3}
   player_high: 1.5
@@ -647,6 +653,27 @@ MonoBehaviour:
       type: {class: LogicTriggerPressKey, ns: , asm: Assembly-CSharp}
       data:
         Key: 115
+    - rid: 2002660419303374903
+      type: {class: ActionLogicTeleport, ns: , asm: Assembly-CSharp}
+      data:
+        ActionParam:
+          m_targetPosition:
+            rid: 2002660419303374904
+          m_targetActor:
+            rid: 2002660419303374905
+    - rid: 2002660419303374904
+      type: {class: ActionParamMousePositionParam, ns: , asm: Assembly-CSharp}
+      data:
+        layer_Terrain:
+          serializedVersion: 2
+          m_Bits: 256
+    - rid: 2002660419303374905
+      type: {class: ActionParamSingleParamPlayerController, ns: , asm: Assembly-CSharp}
+      data: 
+    - rid: 2002660419303374906
+      type: {class: LogicTriggerDownKey, ns: , asm: Assembly-CSharp}
+      data:
+        Key: 114
     - rid: 3606239379817234486
       type: {class: LogicTriggerDownKey, ns: , asm: Assembly-CSharp}
       data:

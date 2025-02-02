@@ -71,12 +71,14 @@
     <Compile Include="Assets\Scripts\ActionLogic\ActionParam\ActionParamSingleParamMousePosition.cs" />
     <Compile Include="Assets\Scripts\EnemySkill1.cs" />
     <Compile Include="Assets\Scripts\ActionLogic\Logics\Die\ActionLogicDie.cs" />
+    <Compile Include="Assets\Scripts\ActionLogic\Logics\Teleport\ActionLogicTeleport.cs" />
     <Compile Include="Assets\Scripts\ActionLogic\Logics\Shoot\ActionShootParam.cs" />
     <Compile Include="Assets\Scripts\Net\NetUtil.cs" />
     <Compile Include="Assets\Scripts\LogicTrigger\LogicTriggerDownKey.cs" />
     <Compile Include="Assets\Scripts\ActionLogic\Logics\StopAction\ActionLogicStopAction.cs" />
     <Compile Include="Assets\Scripts\ActionLogic\Logics\CommonDataChange\ActionLogicCommonDataChange.cs" />
     <Compile Include="Assets\Scripts\ActionLogic\ActionParam\ActionParamBase.cs" />
+    <Compile Include="Assets\Scripts\ActionLogic\Logics\Teleport\ActionTeleportStatus.cs" />
     <Compile Include="Assets\Scripts\ActionLogic\ActionDefine.cs" />
     <Compile Include="Assets\Scripts\EnemyAI.cs" />
     <Compile Include="Assets\Scripts\BattleManger.cs" />
@@ -89,6 +91,7 @@
     <Compile Include="Assets\Scripts\ActionLogic\Logics\StopAction\ActionStopActionParam.cs" />
     <Compile Include="Assets\Scripts\ActionLogic\Logics\Shoot\ActionShootStatus.cs" />
     <Compile Include="Assets\Scripts\ActionLogic\Logics\Contains\ActionContainsParam.cs" />
+    <Compile Include="Assets\Scripts\ActionLogic\Logics\Teleport\ActionTeleportParam.cs" />
     <Compile Include="Assets\Scripts\MarkPanel.cs" />
     <Compile Include="Assets\Scripts\ActionLogic\ActionCommonData.cs" />
     <Compile Include="Assets\Scripts\ActionLogic\ActionParam\ActionParamSingleParamMainPlayer.cs" />
@@ -119,6 +122,7 @@
     <Compile Include="Assets\Scripts\ActionLogic\ActionLogicBase.cs" />
     <Compile Include="Assets\Scripts\Utils\MathUtil.cs" />
     <Compile Include="Assets\Scripts\Control\PlayerControl.cs" />
+    <Compile Include="Assets\Scripts\ActionLogic\ActionParam\ActionParamSingleParamPlayerController.cs" />
     <Compile Include="Assets\Scripts\SetHeight.cs" />
     <Compile Include="Assets\Scripts\ActionLogic\Logics\CommonDataChange\ActionCommonDataChangeParam.cs" />
   </ItemGroup>

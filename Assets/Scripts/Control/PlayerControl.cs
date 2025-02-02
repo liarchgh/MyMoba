@@ -37,17 +37,6 @@ public class PlayerControl : MonoBehaviour, ICommonManger {
 	}
 
 	public void CommonFixedUpdate() {
-		if (Input.GetKeyDown(KeyCode.R)) {
-			Ray target_ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-			RaycastHit target_hit;
-			if (Physics.Raycast(target_ray, out target_hit, 600f, layer_Terrain.value)) {
-				Vector3 pos = target_hit.point;
-				pos.y += player_high;
-				transform.position = pos;
-				// set_player_state(state_static);
-				// player_rb.velocity = (target_position - transform.position).normalized * Speed;
-			}
-		}
 		SkillComponent.CommonFixedUpdate();
 	}
 }
