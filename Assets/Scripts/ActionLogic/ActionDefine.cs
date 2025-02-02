@@ -1,6 +1,6 @@
 using System;
 
-namespace Action
+namespace GameAction
 {
 	public enum ActionLogicType
 	{

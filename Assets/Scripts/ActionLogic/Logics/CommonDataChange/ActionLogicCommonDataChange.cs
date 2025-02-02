@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using Action;
+using GameAction;
 
 [Serializable]
 public class ActionLogicCommonDataChange: ActionLogicWithParamBase<

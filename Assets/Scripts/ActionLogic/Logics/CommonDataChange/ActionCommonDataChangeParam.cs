@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using Action;
+using GameAction;
 using UnityEngine;
 
 [Serializable]

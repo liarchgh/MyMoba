@@ -95,28 +95,24 @@
     <Compile Include="Assets\Scripts\ActionLogic\Logics\Shoot\ActionShootStatus.cs" />
     <Compile Include="Assets\Scripts\ActionLogic\Logics\Contains\ActionContainsParam.cs" />
     <Compile Include="Assets\Scripts\ActionLogic\Logics\Teleport\ActionTeleportParam.cs" />
-    <Compile Include="Assets\Scripts\MarkPanel.cs" />
     <Compile Include="Assets\Scripts\ActionLogic\ActionCommonData.cs" />
     <Compile Include="Assets\Scripts\ActionLogic\ActionParam\ActionParamSingleParamMainPlayer.cs" />
+    <Compile Include="Assets\Scripts\Actor\Skill\Skill1.cs" />
     <Compile Include="Assets\Scripts\LogicTrigger\LogicTriggerBase.cs" />
     <Compile Include="Assets\Scripts\ActionLogic\ActionStatusBase.cs" />
     <Compile Include="Assets\Scripts\Utils\IEnumerableUtil.cs" />
     <Compile Include="Assets\Scripts\ActionLogic\Logics\Move\ActionLogicMove.cs" />
     <Compile Include="Assets\Scripts\ActionLogic\Logics\Contains\ActionContainsStatus.cs" />
-    <Compile Include="Assets\Scripts\Skill1.cs" />
     <Compile Include="Assets\Scripts\ActionLogic\ActionParam\ActionParamSingleParamBase.cs" />
     <Compile Include="Assets\Scripts\LogicTrigger\LogicTriggerAlways.cs" />
     <Compile Include="Assets\Scripts\Actor\ActorPlayer.cs" />
-    <Compile Include="Assets\Scripts\Skill2.cs" />
-    <Compile Include="Assets\Scripts\MainCameraMove.cs" />
     <Compile Include="Assets\Scripts\ActionLogic\Logics\Shoot\ActionLogicShoot.cs" />
     <Compile Include="Assets\Scripts\ActionLogic\Logics\StopAction\ActionStopActionStatus.cs" />
     <Compile Include="Assets\Scripts\Control\SkillComponent.cs" />
-    <Compile Include="Assets\Log.cs" />
     <Compile Include="Assets\Scripts\ActionLogic\Logics\Move\ActionMoveParam.cs" />
     <Compile Include="Assets\Scripts\IDGenerateComponent.cs" />
     <Compile Include="Assets\Scripts\ActionLogic\ActionLogicWithParamBase.cs" />
-    <Compile Include="Assets\Scripts\Resource.cs" />
+    <Compile Include="Assets\Scripts\UI\MarkPanel.cs" />
     <Compile Include="Assets\Scripts\Utils\TransformUtil.cs" />
     <Compile Include="Assets\Scripts\Utils\LogUtil.cs" />
     <Compile Include="Assets\Scripts\ActionLogic\ActionParam\ActionParamSingleParamPlayerPosition.cs" />
@@ -124,12 +120,15 @@
     <Compile Include="Assets\Scripts\Compoennt\HPComponent.cs" />
     <Compile Include="Assets\Scripts\Utils\SerializeUtil.cs" />
     <Compile Include="Assets\Scripts\LogicTrigger\LogicTriggerPressKey.cs" />
+    <Compile Include="Assets\Scripts\Camera\MainCameraMove.cs" />
     <Compile Include="Assets\Scripts\ActionLogic\Logics\CommonDataChange\ActionCommonDataChangeStatus.cs" />
+    <Compile Include="Assets\Scripts\Actor\Skill\Skill2.cs" />
     <Compile Include="Assets\Scripts\ActionLogic\ActionLogicBase.cs" />
     <Compile Include="Assets\Scripts\Utils\MathUtil.cs" />
     <Compile Include="Assets\Scripts\Control\PlayerControl.cs" />
     <Compile Include="Assets\Scripts\ActionLogic\ActionParam\ActionParamSingleParamPlayerController.cs" />
     <Compile Include="Assets\Scripts\SetHeight.cs" />
+    <Compile Include="Assets\Scripts\ResourceMgr.cs" />
     <Compile Include="Assets\Scripts\ActionLogic\Logics\CommonDataChange\ActionCommonDataChangeParam.cs" />
   </ItemGroup>
   <ItemGroup>

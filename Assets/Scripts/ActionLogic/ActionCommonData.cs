@@ -1,11 +1,7 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.InteropServices;
-using Newtonsoft.Json;
-using Sirenix.OdinInspector;
-using UnityEngine;
-namespace Action
+
+namespace GameAction
 {
 	public class ActionCommonData
 	{

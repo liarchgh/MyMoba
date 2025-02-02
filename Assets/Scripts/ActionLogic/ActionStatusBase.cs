@@ -1,5 +1,5 @@
 using System;
-using Action;
+using GameAction;
 
 public class ActionStatusBase
 {

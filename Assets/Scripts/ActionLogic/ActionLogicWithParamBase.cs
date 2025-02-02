@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using Action;
+using GameAction;
 
 [Serializable]
 public abstract class ActionLogicWithParamBase<T1, T2>: ActionLogicBase
