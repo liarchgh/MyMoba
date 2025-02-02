@@ -1,9 +1,7 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
 
 [RequireComponent(typeof(HPComponent))]
 public class PlayerControl : MonoBehaviour, ICommonManger {
-	public uint ID { get; set; }
 	[SerializeField]
 	public SkillComponent SkillComponent = new SkillComponent();
 	[SerializeField]

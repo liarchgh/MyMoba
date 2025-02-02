@@ -11,7 +11,7 @@ public class BattleManger : MonoBehaviour {
 	public static BattleManger Instance {get; private set;}
 	private List<ICommonManger> _commonMangers = new List<ICommonManger>();
 	public uint MainPlayerID { get; private set; }
-	public PlayerControl MainPlayer => PlayerManager.Instance.GetPlayerControl(MainPlayerID);
+	public PlayerControl MainPlayer => (ActorManager.Instance.GetActor(MainPlayerID) as ActorPlayer).PlayerControl;
 	void Awake()
 	{
 		Instance = this;
@@ -19,8 +19,7 @@ public class BattleManger : MonoBehaviour {
 	void Start ()
 	{
 		_commonMangers.ForEach(m => m.CommonStart());
-		var pid = PlayerManager.Instance.CreatePlayer();
-		MainPlayerID = pid;
+		MainPlayerID = ActorPlayer.Create();
 	}
 	void Update ()
 	{
