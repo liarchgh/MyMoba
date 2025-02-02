@@ -15,11 +15,9 @@ public class PlayerControl : MonoBehaviour, ICommonManger {
 	public float Speed = 8;
 	[SerializeField]
 	private LayerMask layer_Terrain;
-	private HPComponent HPComponent => GetComponent<HPComponent>();
 
 	public void CommonStart()
 	{
-		// layer_Terrain = 1 << LayerMask.NameToLayer("Terrain");
 		player_position = GameObject.Instantiate(PlayerPositionPrefab);
 	}
 	public void CommonUpdate () {
