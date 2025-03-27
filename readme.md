@@ -1,9 +1,13 @@
-# environment
+## environment
 
 	- Unity3D 6000.0.32f1
 
-# description
+## description
 A game that generates several enemies around you and you have 4 skills to use to kill enemies. A Moba-person game.
+
+## TODO
+
+- unity 输入插件 Rewired
 
 ## Refs
 
