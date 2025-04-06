@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class MarkPanel : MonoBehaviour {
+	private PanelShowComponent _panelShowComponent = new PanelShowComponent();
 	public Rigidbody panel_rb;
 	private int panel_state = state_static;
 	private const int state_static = 0;
@@ -18,59 +19,12 @@ public class MarkPanel : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         rt = this.GetComponent<RectTransform>();
+		_panelShowComponent.InitStateMachine(KeyCode.Tab, rt,
+			position_begin, position_end);
 	}
 
 	// Update is called once per frame
 	void Update () {
+		_panelShowComponent.Tick();
 	}
-
-	void FixedUpdate() {
-		if (Input.GetKeyDown(KeyCode.Tab)) {
-			set_panel_state(state_right);
-		}
-		if (Input.GetKeyUp(KeyCode.Tab)) {
-			set_panel_state(state_left);
-		}
-
-        //根据状态板状态 设置状态板的速度
-		switch (panel_state) {
-		case state_right:
-			panel_rb.linearVelocity = Vector3.right * 20 / 1000 * Screen.width * (position_end.x - rt.localPosition.x) ;
-			if (position_end.x - rt.localPosition.x <= 0) {
-                rt.localPosition = position_end;
-				set_panel_state(state_static);
-			}
-			break;
-		case state_left:
-			panel_rb.linearVelocity = Vector3.left * 20 * (rt.localPosition.x - position_begin.x) ;
-			// if (position_end.x - rt.localPosition.x >= 0) {
-			// 	set_panel_state(state_static);
-			// }
-			break;
-		case state_static:
-			break;
-		}
-	}
-
-    //设置状态板的状态并开始运动
-	void set_panel_state(int state) {
-		panel_state = state;
-		switch (state) {
-		case state_right:
-            goToBeginPosition();
-			panel_rb.linearVelocity = Vector3.zero;
-			break;
-		case state_left:
-			break;
-		case state_static:
-			panel_rb.linearVelocity = Vector3.zero;
-			// panel_rb.AddForce(Vector3.left * 50000);
-			break;
-		}
-	}
-
-    void goToBeginPosition() {
-        Vector3 nowPos = this.rt.localPosition;
-		nowPos.x = position_begin.x;
-    }
 }

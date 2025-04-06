@@ -162,6 +162,7 @@
     <Compile Include="Assets\Scripts\Utils\MathUtil.cs" />
     <Compile Include="Assets\Scripts\Control\PlayerControl.cs" />
     <Compile Include="Assets\Scripts\ActionLogic\ActionParam\ActionParamSingleParamPlayerController.cs" />
+    <Compile Include="Assets\Scripts\UI\PanelShowComponent.cs" />
     <Compile Include="Assets\Scripts\SetHeight.cs" />
     <Compile Include="Assets\Scripts\ResourceMgr.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextInfoDebugTool.cs" />
