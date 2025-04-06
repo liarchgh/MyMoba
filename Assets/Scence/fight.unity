@@ -441,7 +441,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 229703343}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 340153923}
+        m_TargetAssemblyTypeName: MenuPanel, Assembly-CSharp
+        m_MethodName: OnStartClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &229703343
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -491,8 +503,7 @@ GameObject:
   - component: {fileID: 340153918}
   - component: {fileID: 340153922}
   - component: {fileID: 340153921}
-  - component: {fileID: 340153920}
-  - component: {fileID: 340153919}
+  - component: {fileID: 340153923}
   m_Layer: 5
   m_Name: MenuPanel
   m_TagString: Untagged
@@ -521,48 +532,6 @@ RectTransform:
   m_AnchoredPosition: {x: -842, y: 0}
   m_SizeDelta: {x: 876, y: 492}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!54 &340153919
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 340153917}
-  serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
---- !u!114 &340153920
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 340153917}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1af30d9f2e890794d8605cbbb7104245, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  panel_rb: {fileID: 340153919}
-  position_begin: {x: -1000, y: 0, z: 0}
-  position_end: {x: 0, y: 0, z: 0}
 --- !u!114 &340153921
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -601,6 +570,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 340153917}
   m_CullTransparentMesh: 1
+--- !u!114 &340153923
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 340153917}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f895e448f53cf9e49a52285bbc618276, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  position_begin: {x: -1000, y: 0}
+  position_end: {x: 0, y: 0}
 --- !u!1 &359730875
 GameObject:
   m_ObjectHideFlags: 0
@@ -1266,7 +1249,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 1
+  m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &1406370458
@@ -1359,7 +1342,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1516428049}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 340153923}
+        m_TargetAssemblyTypeName: MenuPanel, Assembly-CSharp
+        m_MethodName: OnEndClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1516428049
 MonoBehaviour:
   m_ObjectHideFlags: 0
