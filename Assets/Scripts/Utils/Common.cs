@@ -1,4 +1,4 @@
 public static class Common
 {
-	public static bool Debug = false;
+	public static bool Debug = true;
 }

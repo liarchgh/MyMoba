@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class ActorManager : MonoBehaviour, ICommonManger
@@ -16,11 +17,11 @@ public class ActorManager : MonoBehaviour, ICommonManger
 	}
 	public void CommonUpdate()
 	{
-		_actors.ForEach(id => _actorDic[id].CommonUpdate());
+		_actors.ToList().ForEach(id => _actorDic[id].CommonUpdate());
 	}
 	public void CommonFixedUpdate()
 	{
-		_actors.ForEach(id => _actorDic[id].CommonFixedUpdate());
+		_actors.ToList().ForEach(id => _actorDic[id].CommonFixedUpdate());
 	}
 	public bool HaveActor(uint actorID)
 	{

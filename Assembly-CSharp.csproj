@@ -152,6 +152,7 @@
     <Compile Include="Assets\Scripts\Utils\SerializeUtil.cs" />
     <Compile Include="Assets\Scripts\LogicTrigger\LogicTriggerPressKey.cs" />
     <Compile Include="Assets\Scripts\Camera\MainCameraMove.cs" />
+    <Compile Include="Assets\Scripts\Actor\ActorBullet.cs" />
     <Compile Include="Assets\Scripts\ActionLogic\Logics\CommonDataChange\ActionCommonDataChangeStatus.cs" />
     <Compile Include="Assets\Scripts\Actor\Skill\Skill2.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\SkewTextExample.cs" />
